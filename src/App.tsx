@@ -1,13 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Header } from './components/Header';
+// import './App.css';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import PageBase from './components/PageBase';
+import Home from './views/Home';
+import Projects from './views/Projects';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PageBase />}>
+          <Route index element={<Home />} />
+          <Route path="projects" element={<Projects />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
