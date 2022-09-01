@@ -12,43 +12,55 @@ function Home() {
     <Stack>
       <section id="about">
         <Container
-          className="justify-content-center d-flex"
+          className="justify-content-center d-flex flex-column"
           style={{
             height: '100vh',
             marginTop: `-${context.headerOffset ?? 0}px`,
           }}
           fluid
         >
-          <Stack className="align-self-center">
-            <h1 className="display-1 align-self-center text-center title m-0">
-              Caleb Lam
-            </h1>
-            <h2 className="align-self-center mb-3">Backend Developer</h2>
-            <Stack
-              direction="horizontal"
-              gap={3}
-              className="justify-content-center align-self-center m-1"
-            >
-              <a
-                className="align-self-center"
-                href="https://linkedin.com/in/caleblam14"
-                rel="noopener noreferrer"
-                target="_blank"
-                color="#FFFFFF"
+          <Row className="align-self-center">
+            <Col className="align-self-center">
+              <h1 className="display-1 align-self-center text-center title m-0">
+                Caleb Lam
+              </h1>
+            </Col>
+          </Row>
+          <Row className="align-self-center">
+            <Col className="align-self-center">
+              <h2 className="align-self-center text-center mb-3">
+                Backend Developer
+              </h2>
+            </Col>
+          </Row>
+          <Row className="align-self-center">
+            <Col className="align-self-center">
+              <Stack
+                direction="horizontal"
+                gap={3}
+                className="justify-content-center align-self-center m-1"
               >
-                <Linkedin size={32} />
-              </a>
-              <a
-                className="align-self-center"
-                href="https://github.com/clameater14"
-                rel="noopener noreferrer"
-                target="_blank"
-                color="#FFFFFF"
-              >
-                <Github size={32} />
-              </a>
-            </Stack>
-          </Stack>
+                <a
+                  className="align-self-center"
+                  href="https://linkedin.com/in/caleblam14"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  color="#FFFFFF"
+                >
+                  <Linkedin size={32} />
+                </a>
+                <a
+                  className="align-self-center"
+                  href="https://github.com/clameater14"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  color="#FFFFFF"
+                >
+                  <Github size={32} />
+                </a>
+              </Stack>
+            </Col>
+          </Row>
         </Container>
       </section>
       {/* <section id="skills">
