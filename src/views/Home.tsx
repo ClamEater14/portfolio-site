@@ -1,6 +1,12 @@
 import { useState, useCallback } from 'react';
 import { Col, Container, Row, Stack } from 'react-bootstrap';
-import { Linkedin, Github } from 'react-bootstrap-icons';
+import {
+  Linkedin,
+  Github,
+  Mailbox,
+  Envelope,
+  EnvelopeFill,
+} from 'react-bootstrap-icons';
 import { useOutletContext } from 'react-router-dom';
 import Header from '../components/Header';
 import ViewContext from '../types/ViewContext';
@@ -57,6 +63,15 @@ function Home() {
                   color="#FFFFFF"
                 >
                   <Github size={32} />
+                </a>
+                <a
+                  className="align-self-center"
+                  href="mailto://caleb.lam@hotmail.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  color="#FFFFFF"
+                >
+                  <EnvelopeFill size={32} />
                 </a>
               </Stack>
             </Col>
