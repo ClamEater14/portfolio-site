@@ -58,7 +58,7 @@ function Home() {
                 </a>
                 <a
                   className="align-self-center"
-                  href="mailto://caleb.lam@hotmail.com"
+                  href="mailto:caleb.lam@hotmail.com"
                   rel="noopener noreferrer"
                   target="_blank"
                   color="#FFFFFF"
