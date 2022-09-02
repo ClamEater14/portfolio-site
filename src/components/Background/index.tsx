@@ -1,6 +1,4 @@
-import { Canvas, useThree } from '@react-three/fiber';
-import { useRef } from 'react';
-import { Euler, PerspectiveCamera } from 'three';
+import { Canvas } from '@react-three/fiber';
 import { Config } from '../../Config';
 import BackgroundCanvas from './BackgroundCanvas';
 

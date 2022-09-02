@@ -1,5 +1,5 @@
 import { Col, Container, Row, Stack } from 'react-bootstrap';
-import { Linkedin, Github, EnvelopeFill } from 'react-bootstrap-icons';
+import { Icons } from '../components/Icons';
 import { useOutletContext } from 'react-router-dom';
 import ViewContext from '../types/ViewContext';
 
@@ -45,7 +45,7 @@ function Home() {
                   target="_blank"
                   color="#FFFFFF"
                 >
-                  <Linkedin size={32} />
+                  <Icons.LinkedIn size={32} />
                 </a>
                 <a
                   className="align-self-center"
@@ -54,7 +54,7 @@ function Home() {
                   target="_blank"
                   color="#FFFFFF"
                 >
-                  <Github size={32} />
+                  <Icons.GitHub size={32} />
                 </a>
                 <a
                   className="align-self-center"
@@ -63,7 +63,7 @@ function Home() {
                   target="_blank"
                   color="#FFFFFF"
                 >
-                  <EnvelopeFill size={32} />
+                  <Icons.EnvelopeFill size={32} />
                 </a>
               </Stack>
             </Col>
