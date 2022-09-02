@@ -1,14 +1,6 @@
-import { useState, useCallback } from 'react';
 import { Col, Container, Row, Stack } from 'react-bootstrap';
-import {
-  Linkedin,
-  Github,
-  Mailbox,
-  Envelope,
-  EnvelopeFill,
-} from 'react-bootstrap-icons';
+import { Linkedin, Github, EnvelopeFill } from 'react-bootstrap-icons';
 import { useOutletContext } from 'react-router-dom';
-import Header from '../components/Header';
 import ViewContext from '../types/ViewContext';
 
 function Home() {

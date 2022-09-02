@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { Container, Nav, Navbar, NavbarProps, NavLink } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link, To } from 'react-router-dom';
 
 interface NavLinkInfo {
