@@ -17,7 +17,7 @@ function Projects() {
         <Row>
           <Col>
             <p className="text-center m-0">
-              See my GitHub{' '}
+              See my GitHub profile{' '}
               <a
                 className="align-self-center"
                 href="https://github.com/clameater14"
