@@ -1,6 +1,10 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
-import { IcosahedronBufferGeometry, LineSegments } from 'three';
+import {
+  AdditiveBlending,
+  IcosahedronBufferGeometry,
+  LineSegments,
+} from 'three';
 
 function BackgroundCanvas() {
   const linesRef = useRef<LineSegments>(null);
@@ -19,6 +23,11 @@ function BackgroundCanvas() {
       <perspectiveCamera />
       <lineSegments ref={linesRef}>
         <edgesGeometry args={[icosahedronGeom]} />
+        <lineBasicMaterial
+          transparent
+          blending={AdditiveBlending}
+          opacity={0.25}
+        />
       </lineSegments>
     </>
   );
