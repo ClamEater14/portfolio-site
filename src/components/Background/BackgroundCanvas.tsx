@@ -5,6 +5,7 @@ import {
   IcosahedronBufferGeometry,
   LineSegments,
 } from 'three';
+import { Config } from '../../Config';
 
 function BackgroundCanvas() {
   const linesRef = useRef<LineSegments>(null);
@@ -26,7 +27,8 @@ function BackgroundCanvas() {
         <lineBasicMaterial
           transparent
           blending={AdditiveBlending}
-          opacity={0.25}
+          color={Config.hedronColor}
+          opacity={0.75}
         />
       </lineSegments>
     </>

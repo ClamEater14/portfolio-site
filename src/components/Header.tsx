@@ -20,7 +20,7 @@ const LINKS: NavLinkInfo[] = [
 
 const Header = forwardRef<HTMLElement>((_props, ref) => {
   return (
-    <Navbar ref={ref} variant="dark" bg="none" sticky="top" collapseOnSelect>
+    <Navbar ref={ref} variant="dark" bg="dark" sticky="top" collapseOnSelect>
       <Container>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Brand as={Link} to="/">
