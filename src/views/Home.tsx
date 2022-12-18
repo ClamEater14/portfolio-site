@@ -40,6 +40,7 @@ function Home() {
               >
                 <a
                   className="align-self-center"
+                  aria-label="View my LinkedIn profile"
                   href="https://linkedin.com/in/caleblam14"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -49,6 +50,7 @@ function Home() {
                 </a>
                 <a
                   className="align-self-center"
+                  aria-label="View my GitHub profile"
                   href="https://github.com/clameater14"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -58,6 +60,7 @@ function Home() {
                 </a>
                 <a
                   className="align-self-center"
+                  aria-label="Contact me via email"
                   href="mailto:caleb@caleblamcodes.dev"
                   rel="noopener noreferrer"
                   target="_blank"
