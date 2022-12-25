@@ -10,9 +10,9 @@ const TRANSITION_TIME = 0.5; // transition time in seconds
 const TRANSITION_EXIT_DELAY = 0.5; // delay before transition begins to exit in seconds
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [transitionEntered, setTransitionEntered] = useState(false);
+  const [transitionEntered, setTransitionEntered] = useState(true); // loading screen appears by default, set as entered
   const [scrollY, setScrollY] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // show loading screen by default
 
   const incomingComponent = useMemo(
     () => <Component {...pageProps} />,
