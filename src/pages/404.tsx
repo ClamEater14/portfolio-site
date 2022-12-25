@@ -1,19 +1,14 @@
-import { NextPage } from "next";
 import { Col, Container, Row } from "react-bootstrap";
 import { useViewContext } from "../context/ViewContext";
 import Link from "next/link";
 import Head from "next/head";
 
-interface ErrorProps {
-  statusCode?: number;
-}
-
-const Error: NextPage = ({ statusCode }: ErrorProps) => {
+const Error = () => {
   const { headerOffset, footerOffset } = useViewContext();
   return (
     <>
       <Head>
-        <title>Uh oh...</title>
+        <title>Uh oh... (404)</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.svg" />
       </Head>
@@ -28,14 +23,12 @@ const Error: NextPage = ({ statusCode }: ErrorProps) => {
       >
         <Row className="align-self-center">
           <Col className="align-self-center">
-            <h1 className="display-1 align-self-center title m-0">
-              {statusCode}
-            </h1>
+            <h1 className="display-1 align-self-center title m-0">404</h1>
           </Col>
         </Row>
         <Row>
           <Col>
-            <p>Ouch! Looks like something bad happened here...</p>
+            <p>It seems you are lost and confused...</p>
             <Link href="/">
               <u>Let&apos;s go back Home!</u>
             </Link>
@@ -44,11 +37,6 @@ const Error: NextPage = ({ statusCode }: ErrorProps) => {
       </Container>
     </>
   );
-};
-
-Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
 };
 
 export default Error;
