@@ -1,20 +1,21 @@
-import { forwardRef } from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
-import { Link, To } from 'react-router-dom';
+import Image from "next/image";
+import Link from "next/link";
+import { forwardRef } from "react";
+import { Container, Nav, Navbar } from "react-bootstrap";
 
 interface NavLinkInfo {
   linkText: string;
-  to: To;
+  to: string;
 }
 
 const LINKS: NavLinkInfo[] = [
   {
-    linkText: 'Home',
-    to: '/',
+    linkText: "Home",
+    to: "/",
   },
   {
-    linkText: 'Projects',
-    to: '/projects',
+    linkText: "Projects",
+    to: "/projects",
   },
 ];
 
@@ -23,8 +24,8 @@ const Header = forwardRef<HTMLElement>((_props, ref) => {
     <Navbar ref={ref} variant="dark" bg="dark" sticky="top" collapseOnSelect>
       <Container>
         <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Brand as={Link} to="/">
-          <img
+        <Navbar.Brand as={Link} href="/">
+          <Image
             src="/logo.svg"
             width="40"
             height="40"
@@ -35,7 +36,7 @@ const Header = forwardRef<HTMLElement>((_props, ref) => {
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
             {LINKS.map((navLinkInfo, index) => (
-              <Nav.Link key={index} as={Link} to={navLinkInfo.to}>
+              <Nav.Link key={index} as={Link} href={navLinkInfo.to}>
                 {navLinkInfo.linkText}
               </Nav.Link>
             ))}
@@ -46,4 +47,5 @@ const Header = forwardRef<HTMLElement>((_props, ref) => {
   );
 });
 
+Header.displayName = "Header";
 export default Header;

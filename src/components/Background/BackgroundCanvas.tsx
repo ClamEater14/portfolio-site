@@ -1,16 +1,12 @@
-import { useFrame } from '@react-three/fiber';
-import { useRef } from 'react';
-import {
-  AdditiveBlending,
-  IcosahedronBufferGeometry,
-  LineSegments,
-} from 'three';
-import { Config } from '../../Config';
+import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
+import { AdditiveBlending, IcosahedronGeometry, LineSegments } from "three";
+import { AppConfig } from "../../config/AppConfig";
 
 function BackgroundCanvas() {
   const linesRef = useRef<LineSegments>(null);
 
-  const icosahedronGeom = new IcosahedronBufferGeometry(3, 1);
+  const icosahedronGeom = new IcosahedronGeometry(3, 1);
 
   useFrame((_state, delta) => {
     if (linesRef.current) {
@@ -27,7 +23,7 @@ function BackgroundCanvas() {
         <lineBasicMaterial
           transparent
           blending={AdditiveBlending}
-          color={Config.hedronColor}
+          color={AppConfig.hedronColor}
           opacity={0.75}
         />
       </lineSegments>

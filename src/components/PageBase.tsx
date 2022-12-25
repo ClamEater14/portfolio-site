@@ -1,25 +1,63 @@
-import { useState, useCallback } from 'react';
-import { Stack } from 'react-bootstrap';
-import { Outlet } from 'react-router-dom';
-import Background from './Background';
-import Header from './Header';
+import { useCallback } from "react";
+// import Background from "./Background";
+import dynamic from "next/dynamic";
+import { useViewContext } from "../context/ViewContext";
+import Footer from "./Footer";
+import Header from "./Header";
 
-function PageBase() {
-  const [headerOffset, setHeaderOffset] = useState(0);
+class PageBaseProps {
+  scrollable: boolean = true;
+  children: any;
+}
 
-  const headerRef = useCallback((node: HTMLElement) => {
-    if (node != null) {
-      setHeaderOffset(node.clientHeight);
-    }
-  }, []);
+const Background = dynamic(() => import("../components/Background"), {
+  ssr: false,
+});
+
+function PageBase({ scrollable, children }: PageBaseProps) {
+  const { headerOffset, setHeaderOffset, footerOffset, setFooterOffset } =
+    useViewContext();
+
+  const headerRef = useCallback(
+    (node: HTMLElement) => {
+      if (node != null) {
+        setHeaderOffset(node.clientHeight);
+      }
+    },
+    [setHeaderOffset]
+  );
+
+  const footerRef = useCallback(
+    (node: HTMLElement) => {
+      if (node != null) {
+        setFooterOffset(node.clientHeight);
+      }
+    },
+    [setFooterOffset]
+  );
 
   return (
     <>
-      <Header ref={headerRef} />
-      <Stack>
+      <div className={!scrollable ? "overflow-hidden vh-100" : ""}>
+        <Header ref={headerRef} />
         <Background />
-        <Outlet context={{ headerOffset: headerOffset }} />
-      </Stack>
+        <div className="position-relative">
+          <div
+            style={{
+              paddingBottom: `${footerOffset}px`,
+            }}
+          >
+            <main
+              style={{
+                minHeight: `calc(100vh - ${headerOffset + footerOffset}px)`,
+              }}
+            >
+              {children}
+            </main>
+          </div>
+          <Footer ref={footerRef} />
+        </div>
+      </div>
     </>
   );
 }

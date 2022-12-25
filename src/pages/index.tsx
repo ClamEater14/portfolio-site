@@ -1,19 +1,30 @@
-import { Col, Container, Row, Stack } from 'react-bootstrap';
-import { Icons } from '../components/Icons';
-import { useOutletContext } from 'react-router-dom';
-import ViewContext from '../types/ViewContext';
+import { Inter } from "@next/font/google";
+import Head from "next/head";
+import { Col, Container, Row, Stack } from "react-bootstrap";
+import { Icons } from "../components/Icons";
+import { useViewContext } from "../context/ViewContext";
 
-function Home() {
-  const context = useOutletContext<ViewContext>();
+const inter = Inter({ subsets: ["latin"] });
 
+export default function Home() {
+  const { headerOffset } = useViewContext();
   return (
-    <Stack>
+    <>
+      <Head>
+        <title>Caleb Lam</title>
+        <meta
+          name="description"
+          content="A software developer focused on backend development."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/logo.svg" />
+      </Head>
       <section id="about">
         <Container
           className="justify-content-center d-flex flex-column"
           style={{
-            height: '100vh',
-            marginTop: `-${context.headerOffset ?? 0}px`,
+            height: "100vh",
+            marginTop: `-${headerOffset}px`,
           }}
           fluid
         >
@@ -40,7 +51,6 @@ function Home() {
               >
                 <a
                   className="align-self-center"
-                  aria-label="View my LinkedIn profile"
                   href="https://linkedin.com/in/caleblam14"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -50,7 +60,6 @@ function Home() {
                 </a>
                 <a
                   className="align-self-center"
-                  aria-label="View my GitHub profile"
                   href="https://github.com/clameater14"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -60,7 +69,6 @@ function Home() {
                 </a>
                 <a
                   className="align-self-center"
-                  aria-label="Contact me via email"
                   href="mailto:caleb@caleblamcodes.dev"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -74,7 +82,7 @@ function Home() {
         </Container>
       </section>
       {/* <section id="skills">
-        <Container className="justify-content-center" fluid>
+        <Container className="justify-content-center bg-dark" fluid>
           <Row>
             <Col>
               <h1 className="display-1 align-self-center text-center title">
@@ -91,8 +99,6 @@ function Home() {
           </Row>
         </Container>
       </section> */}
-    </Stack>
+    </>
   );
 }
-
-export default Home;
