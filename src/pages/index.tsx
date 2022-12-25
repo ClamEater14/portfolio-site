@@ -14,8 +14,10 @@ export default function Home() {
         <title>Caleb Lam</title>
         <meta
           name="description"
-          content="A software developer focused on backend development."
+          content="A software developer focused on backend development. Greetings!"
         />
+        <meta name="theme-color" content="#043A9B" />
+        <meta content="/logo.png" property="og:image" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.svg" />
       </Head>
