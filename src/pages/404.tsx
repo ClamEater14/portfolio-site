@@ -9,11 +9,6 @@ const Error = () => {
   return (
     <>
       <NextSeo title="Uh Oh... (404)" noindex nofollow />
-      {/* <Head>
-        <title>Uh oh... (404)</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo.svg" />
-      </Head> */}
       <Container
         className="justify-content-center d-flex flex-column text-center"
         style={{

@@ -6,6 +6,7 @@ import PageBase from "../components/PageBase";
 import { ViewProvider } from "../context/ViewContext";
 import { DefaultSeo } from "next-seo";
 import "../styles/globals.scss";
+import { AppConfig } from "../config/AppConfig";
 
 const TRANSITION_TIME = 0.5; // transition time in seconds
 const TRANSITION_EXIT_DELAY = 0.5; // delay before transition begins to exit in seconds
@@ -78,7 +79,7 @@ export default function App({ Component, pageProps }: AppProps) {
             "A software developer focused on backend development. Greetings!",
           images: [
             {
-              url: "https://files.caleblamcodes.dev/logo.png",
+              url: AppConfig.ogImageURL,
               width: 630,
               height: 630,
               alt: "Caleb Lam logo",
@@ -98,7 +99,7 @@ export default function App({ Component, pageProps }: AppProps) {
         additionalLinkTags={[
           {
             rel: "icon",
-            href: "/logo.svg",
+            href: AppConfig.logoURL,
           },
         ]}
       />

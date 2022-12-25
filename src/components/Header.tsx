@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { forwardRef } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { AppConfig } from "../config/AppConfig";
 
 interface NavLinkInfo {
   linkText: string;
@@ -26,7 +27,7 @@ const Header = forwardRef<HTMLElement>((_props, ref) => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Brand as={Link} href="/">
           <Image
-            src="/logo.svg"
+            src={AppConfig.logoURL}
             width="40"
             height="40"
             className="d-inline-block align-top"

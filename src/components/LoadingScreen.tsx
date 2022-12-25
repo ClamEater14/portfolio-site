@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Container } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
+import { AppConfig } from "../config/AppConfig";
 
 interface LoadingScreenProps {
   loading?: boolean;
@@ -37,7 +38,12 @@ function LoadingScreen({
         }}
         className="bg-black vh-100 d-flex fixed-top justify-content-center align-items-center"
       >
-        <Image src="/logo.svg" width={100} height={100} alt="Caleb Lam logo" />
+        <Image
+          src={AppConfig.logoURL}
+          width={100}
+          height={100}
+          alt="Caleb Lam logo"
+        />
       </Container>
     </Fade>
   );

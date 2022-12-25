@@ -11,17 +11,6 @@ function Projects() {
         title="Caleb Lam | Projects"
         description="A software developer focused on backend development. See my projects here!"
       />
-      {/* <Head>
-        <title>Caleb Lam | Projects</title>
-        <meta
-          name="description"
-          content="A software developer focused on backend development. See my projects here!"
-        />
-        <meta name="theme-color" content="#043A9B" />
-        <meta content="/logo.png" property="og:image" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo.svg" />
-      </Head> */}
       <section id="projects">
         <Container className="mb-2 text-center">
           <Row>
