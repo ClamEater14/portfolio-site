@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { Icons } from "../components/Icons";
 import { useViewContext } from "../context/ViewContext";
+import { NextSeo } from "next-seo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,7 +11,11 @@ export default function Home() {
   const { headerOffset } = useViewContext();
   return (
     <>
-      <Head>
+      <NextSeo
+        title="Caleb Lam"
+        description="A software developer focused on backend development. Greetings!"
+      />
+      {/* <Head>
         <title>Caleb Lam</title>
         <meta
           name="description"
@@ -20,7 +25,7 @@ export default function Home() {
         <meta content="/logo.png" property="og:image" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.svg" />
-      </Head>
+      </Head> */}
       <section id="about">
         <Container
           className="justify-content-center d-flex flex-column"

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import LoadingScreen from "../components/LoadingScreen";
 import PageBase from "../components/PageBase";
 import { ViewProvider } from "../context/ViewContext";
+import { DefaultSeo } from "next-seo";
 import "../styles/globals.scss";
 
 const TRANSITION_TIME = 0.5; // transition time in seconds
@@ -68,6 +69,39 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <DefaultSeo
+        themeColor="#043A9B"
+        openGraph={{
+          url: "https://www.caleblamcodes.dev/",
+          title: "Caleb Lam",
+          description:
+            "A software developer focused on backend development. Greetings!",
+          images: [
+            {
+              url: "https://files.caleblamcodes.dev/logo.png",
+              width: 630,
+              height: 630,
+              alt: "Caleb Lam logo",
+              type: "image/png",
+            },
+          ],
+        }}
+        twitter={{
+          cardType: "summary_large_image",
+        }}
+        additionalMetaTags={[
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1",
+          },
+        ]}
+        additionalLinkTags={[
+          {
+            rel: "icon",
+            href: "/logo.svg",
+          },
+        ]}
+      />
       <LoadingScreen
         duration={TRANSITION_TIME}
         loading={loading}

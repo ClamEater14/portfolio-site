@@ -2,11 +2,16 @@ import { Col, Container, Row } from "react-bootstrap";
 import ProjectCard from "../../components/ProjectCard";
 import Head from "next/head";
 import Link from "next/link";
+import { NextSeo } from "next-seo";
 
 function Projects() {
   return (
     <>
-      <Head>
+      <NextSeo
+        title="Caleb Lam | Projects"
+        description="A software developer focused on backend development. See my projects here!"
+      />
+      {/* <Head>
         <title>Caleb Lam | Projects</title>
         <meta
           name="description"
@@ -16,7 +21,7 @@ function Projects() {
         <meta content="/logo.png" property="og:image" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.svg" />
-      </Head>
+      </Head> */}
       <section id="projects">
         <Container className="mb-2 text-center">
           <Row>

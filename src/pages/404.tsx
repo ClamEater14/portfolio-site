@@ -2,16 +2,18 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useViewContext } from "../context/ViewContext";
 import Link from "next/link";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 
 const Error = () => {
   const { headerOffset, footerOffset } = useViewContext();
   return (
     <>
-      <Head>
+      <NextSeo title="Uh Oh... (404)" noindex nofollow />
+      {/* <Head>
         <title>Uh oh... (404)</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.svg" />
-      </Head>
+      </Head> */}
       <Container
         className="justify-content-center d-flex flex-column text-center"
         style={{
