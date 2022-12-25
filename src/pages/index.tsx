@@ -51,6 +51,7 @@ export default function Home() {
               >
                 <a
                   className="align-self-center"
+                  aria-label="Contact me via email"
                   href="https://linkedin.com/in/caleblam14"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -60,6 +61,7 @@ export default function Home() {
                 </a>
                 <a
                   className="align-self-center"
+                  aria-label="Contact me via email"
                   href="https://github.com/clameater14"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -69,6 +71,7 @@ export default function Home() {
                 </a>
                 <a
                   className="align-self-center"
+                  aria-label="Contact me via email"
                   href="mailto:caleb@caleblamcodes.dev"
                   rel="noopener noreferrer"
                   target="_blank"
