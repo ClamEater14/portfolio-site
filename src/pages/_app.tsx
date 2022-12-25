@@ -25,6 +25,11 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     prevComponentRef.current = incomingComponent;
 
+    const initLoad = document.getElementById("init-load");
+    if (initLoad != null) {
+      initLoad.remove();
+    }
+
     const t = setTimeout(
       () => setLoading(false),
       (TRANSITION_TIME + TRANSITION_EXIT_DELAY) * 1000
