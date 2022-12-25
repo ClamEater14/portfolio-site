@@ -14,6 +14,7 @@ const Footer = forwardRef<HTMLElement>((_props, ref) => {
         >
           <a
             className="align-self-center"
+            aria-label="View my LinkedIn profile"
             href="https://linkedin.com/in/caleblam14"
             rel="noopener noreferrer"
             target="_blank"
@@ -23,6 +24,7 @@ const Footer = forwardRef<HTMLElement>((_props, ref) => {
           </a>
           <a
             className="align-self-center"
+            aria-label="View my GitHub profile"
             href="https://github.com/clameater14"
             rel="noopener noreferrer"
             target="_blank"
@@ -32,6 +34,7 @@ const Footer = forwardRef<HTMLElement>((_props, ref) => {
           </a>
           <a
             className="align-self-center"
+            aria-label="Contact me via email"
             href="mailto:caleb@caleblamcodes.dev"
             rel="noopener noreferrer"
             target="_blank"
