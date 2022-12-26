@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    runtime: "edge",
+  },
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -7,10 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "files.caleblamcodes.dev",
         port: "",
-        pathname: "/**"
-      }
-    ]
-  }
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

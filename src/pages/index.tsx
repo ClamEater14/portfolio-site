@@ -1,11 +1,11 @@
-import { Inter } from "@next/font/google";
-import Head from "next/head";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { Icons } from "../components/Icons";
 import { useViewContext } from "../context/ViewContext";
 import { NextSeo } from "next-seo";
 
-const inter = Inter({ subsets: ["latin"] });
+export const config = {
+  runtime: "nodejs",
+};
 
 export default function Home() {
   const { headerOffset } = useViewContext();

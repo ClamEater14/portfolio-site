@@ -24,7 +24,7 @@ const Error = () => {
         </Row>
         <Row>
           <Col>
-            <p>It seems you are lost and confused...</p>
+            <p>You seem lost and confused...</p>
             <Link href="/">
               <u>Let&apos;s go back Home!</u>
             </Link>

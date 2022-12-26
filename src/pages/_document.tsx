@@ -7,7 +7,11 @@ import LoadingScreen from "../components/LoadingScreen";
 
 export default class DocumentWithNonce extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await getCspInitialProps({ ctx });
+    const initialProps = await getCspInitialProps({
+      ctx,
+      trustifyScripts: true,
+      trustifyStyles: true,
+    });
     return initialProps;
   }
 

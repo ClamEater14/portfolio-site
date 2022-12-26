@@ -4,6 +4,10 @@ import Head from "next/head";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
 
+export const config = {
+  runtime: "nodejs",
+};
+
 function Projects() {
   return (
     <>
