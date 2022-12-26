@@ -1,17 +1,16 @@
-const { createSecureHeaders } = require("next-secure-headers");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true,
-  },
-  headers: async () => [
-    {
-      source: "/:path*",
-      headers: createSecureHeaders(),
-    },
-  ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "files.caleblamcodes.dev",
+        port: "",
+        pathname: "/**"
+      }
+    ]
+  }
 };
 
 module.exports = nextConfig;
