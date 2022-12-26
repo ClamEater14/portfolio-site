@@ -1,7 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useViewContext } from "../context/ViewContext";
 import Link from "next/link";
-import Head from "next/head";
 import { NextSeo } from "next-seo";
 
 const Error = () => {
