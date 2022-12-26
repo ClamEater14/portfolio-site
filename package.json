@@ -19,7 +19,6 @@
     "eslint-config-next": "13.0.7",
     "next": "13.0.7",
     "next-seo": "^5.15.0",
-    "next-strict-csp": "^1.0.1",
     "react": "18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "18.2.0",
