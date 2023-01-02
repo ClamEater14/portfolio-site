@@ -2,7 +2,11 @@ import { Canvas } from "@react-three/fiber";
 import { AppConfig } from "../../config/AppConfig";
 import BackgroundCanvas from "./BackgroundCanvas";
 
-function Background() {
+interface BackgroundProps {
+  onLoad?: () => void;
+}
+
+function Background({ onLoad }: BackgroundProps) {
   return (
     <Canvas
       linear
@@ -17,6 +21,7 @@ function Background() {
         top: 0,
         left: 0,
       }}
+      onCreated={onLoad}
     >
       <ambientLight />
       <BackgroundCanvas />

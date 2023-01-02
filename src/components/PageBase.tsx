@@ -7,6 +7,7 @@ import Header from "./Header";
 
 class PageBaseProps {
   scrollable: boolean = true;
+  onBackgroundLoad?: () => void;
   children: any;
 }
 
@@ -14,7 +15,7 @@ const Background = dynamic(() => import("../components/Background"), {
   ssr: false,
 });
 
-function PageBase({ scrollable, children }: PageBaseProps) {
+function PageBase({ scrollable, onBackgroundLoad, children }: PageBaseProps) {
   const { headerOffset, setHeaderOffset, footerOffset, setFooterOffset } =
     useViewContext();
 
@@ -48,7 +49,7 @@ function PageBase({ scrollable, children }: PageBaseProps) {
     <>
       <div className={!scrollable ? "overflow-hidden vh-100" : ""}>
         <Header ref={headerRef} />
-        <Background />
+        <Background onLoad={onBackgroundLoad} />
         <div className="position-relative">
           <div
             style={{

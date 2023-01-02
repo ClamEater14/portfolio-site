@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
-import { AppConfig } from "../config/AppConfig";
+import { AppConfig } from "../../config/AppConfig";
 import styles from "./LoadingScreen.module.css";
 
 interface LoadingScreenProps {
@@ -36,7 +36,7 @@ function LoadingScreen({
         setVisible(false);
         if (onExited) onExited();
       }}
-      mountOnEnter={true}
+      unmountOnExit={true}
     >
       <Container
         fluid
