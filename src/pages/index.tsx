@@ -17,11 +17,11 @@ export default function Home() {
       />
       <section id="about">
         <Container
-          className="justify-content-center d-flex flex-column"
-          style={{
-            height: "100vh",
-            marginTop: `-${headerOffset}px`,
-          }}
+          className="justify-content-center d-flex flex-column vh-100 offset-header"
+          // style={{
+          //   height: "100vh",
+          //   marginTop: `-${headerOffset}px`,
+          // }}
           fluid
         >
           <Row className="align-self-center">

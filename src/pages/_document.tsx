@@ -1,36 +1,61 @@
-import {
-  getCspInitialProps,
-  provideComponents,
-} from "@next-safe/middleware/dist/document";
-import Document, { Html, Main, DocumentContext } from "next/document";
+import Document, {
+  Html,
+  Main,
+  Head,
+  NextScript,
+  DocumentContext,
+} from "next/document";
 import LoadingScreen from "../components/LoadingScreen";
+import generateNonce from "../utils/generate-nonce";
+import generateCSP from "../utils/generate-csp";
 
-export default class DocumentWithNonce extends Document {
+interface DocumentProps {
+  nonce: string;
+}
+
+class MyDocument extends Document<DocumentProps> {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await getCspInitialProps({
-      ctx,
-      trustifyScripts: true,
-      trustifyStyles: true,
-    });
-    return initialProps;
+    const originalRenderPage = ctx.renderPage;
+    const nonce = generateNonce();
+    const csp = generateCSP({ nonce });
+
+    // Run the React rendering logic synchronously
+    ctx.renderPage = () =>
+      originalRenderPage({
+        // Useful for wrapping the whole react tree
+        enhanceApp: (App) => App,
+        // Useful for wrapping in a per-page basis
+        enhanceComponent: (Component) => Component,
+      });
+    ctx.res?.setHeader("Content-Security-Policy", csp);
+    // Run the parent `getInitialProps`, it now includes the custom `renderPage`
+    const initialProps = await Document.getInitialProps(ctx);
+    const additionalProps = { nonce };
+
+    return {
+      ...initialProps,
+      ...additionalProps,
+    };
   }
 
   render() {
-    const { Head, NextScript } = provideComponents(this.props);
+    const { nonce } = this.props;
     return (
-      <Html lang="en">
-        <Head />
+      <Html nonce={nonce}>
+        <Head nonce={nonce} />
         <body>
           <div id="init-load">
             <LoadingScreen loading />
           </div>
           <Main />
-          <NextScript />
+          <NextScript nonce={nonce} />
         </body>
       </Html>
     );
   }
 }
+
+export default MyDocument;
 
 // export default function Document() {
 //   return (

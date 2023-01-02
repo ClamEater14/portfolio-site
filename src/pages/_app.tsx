@@ -1,17 +1,19 @@
-import type { AppProps } from "next/app";
+import { DefaultSeo } from "next-seo";
+import App, { AppContext, AppInitialProps, AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import LoadingScreen from "../components/LoadingScreen";
 import PageBase from "../components/PageBase";
-import { ViewProvider } from "../context/ViewContext";
-import { DefaultSeo } from "next-seo";
-import "../styles/globals.scss";
 import { AppConfig } from "../config/AppConfig";
+import { ViewProvider } from "../context/ViewContext";
+import "../styles/globals.scss";
+import "../styles/fonts.scss";
+import "../styles/vars.css";
 
 const TRANSITION_TIME = 0.5; // transition time in seconds
 const TRANSITION_EXIT_DELAY = 0.5; // delay before transition begins to exit in seconds
 
-export default function App({ Component, pageProps }: AppProps) {
+const PageApp = ({ Component, pageProps }: AppProps) => {
   const [transitionEntered, setTransitionEntered] = useState(true); // loading screen appears by default, set as entered
   const [scrollY, setScrollY] = useState(0);
   const [loading, setLoading] = useState(true); // show loading screen by default
@@ -103,16 +105,30 @@ export default function App({ Component, pageProps }: AppProps) {
           },
         ]}
       />
-      <LoadingScreen
-        duration={TRANSITION_TIME}
-        loading={loading}
-        onEntered={() => setTransitionEntered(true)}
-      />
-      <ViewProvider>
-        <PageBase scrollable={!loading || !transitionEntered}>
-          {!loading ? incomingComponent : prevComponentRef.current}
-        </PageBase>
-      </ViewProvider>
+      <div>
+        <LoadingScreen
+          duration={TRANSITION_TIME}
+          loading={loading}
+          onEntered={() => setTransitionEntered(true)}
+        />
+        <ViewProvider>
+          <PageBase scrollable={!loading || !transitionEntered}>
+            {!loading ? incomingComponent : prevComponentRef.current}
+          </PageBase>
+        </ViewProvider>
+      </div>
     </>
   );
-}
+};
+
+PageApp.getInitialProps = async (
+  context: AppContext
+): Promise<AppInitialProps> => {
+  const ctx = await App.getInitialProps(context);
+
+  return {
+    ...ctx,
+  };
+};
+
+export default PageApp;
