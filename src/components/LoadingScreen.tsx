@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
 import { AppConfig } from "../config/AppConfig";
+import styles from "./LoadingScreen.module.css";
 
 interface LoadingScreenProps {
   loading?: boolean;
@@ -18,6 +19,13 @@ function LoadingScreen({
   onExited,
 }: LoadingScreenProps) {
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--loading-transition-duration",
+      `${duration ?? 1}s`
+    );
+  }, [duration]);
   return (
     <Fade
       timeout={(duration ?? 1) * 1000}
@@ -32,14 +40,17 @@ function LoadingScreen({
     >
       <Container
         fluid
-        style={{
-          transitionDuration: `${duration ?? 1}s`,
-          pointerEvents: visible ? "auto" : "none",
-        }}
-        className="bg-black vh-100 d-flex fixed-top justify-content-center align-items-center"
+        // style={{
+        //   transitionDuration: `${duration ?? 1}s`,
+        //   pointerEvents: visible ? "auto" : "none",
+        // }}
+        className={`bg-black vh-100 d-flex fixed-top justify-content-center align-items-center ${
+          styles.transition
+        } ${visible ? "pe-auto" : "pe-none"}`}
       >
         <Image
           src={AppConfig.logoURL}
+          priority
           width={100}
           height={100}
           alt="Caleb Lam logo"

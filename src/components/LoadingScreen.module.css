@@ -1,0 +1,3 @@
+.transition {
+	transition-duration: var(--loading-transition-duration) !important;
+}
