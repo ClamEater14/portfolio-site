@@ -28,6 +28,7 @@ const Header = forwardRef<HTMLElement>((_props, ref) => {
         <Navbar.Brand as={Link} href="/">
           <Image
             src={AppConfig.logoURL}
+            priority
             width="40"
             height="40"
             className="d-inline-block align-top"

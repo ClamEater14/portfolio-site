@@ -22,6 +22,10 @@ function PageBase({ scrollable, children }: PageBaseProps) {
     (node: HTMLElement) => {
       if (node != null) {
         setHeaderOffset(node.clientHeight);
+        document.documentElement.style.setProperty(
+          "--header-height",
+          `${node.clientHeight}px`
+        );
       }
     },
     [setHeaderOffset]
@@ -31,6 +35,10 @@ function PageBase({ scrollable, children }: PageBaseProps) {
     (node: HTMLElement) => {
       if (node != null) {
         setFooterOffset(node.clientHeight);
+        document.documentElement.style.setProperty(
+          "--footer-height",
+          `${node.clientHeight}px`
+        );
       }
     },
     [setFooterOffset]
