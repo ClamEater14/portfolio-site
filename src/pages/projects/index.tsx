@@ -1,14 +1,25 @@
+import { GetServerSideProps } from "next";
+import { NextSeo } from "next-seo";
+import Link from "next/link";
 import { Col, Container, Row } from "react-bootstrap";
 import ProjectCard from "../../components/ProjectCard";
-import Head from "next/head";
-import Link from "next/link";
-import { NextSeo } from "next-seo";
+import { AppConfig } from "../../config/AppConfig";
+import {
+  CategoryItem,
+  ProjectItem,
+  ProjectsData,
+} from "../../types/ProjectPageTypes";
+import ProjectCardCategoryBadge from "../../components/ProjectCardCategoryBadge";
 
-export const config = {
-  runtime: "nodejs",
+type ProjectsPageProps = {
+  projects: ProjectItem[];
+  currentPage: number;
+  pageSize: number;
 };
 
-function Projects() {
+function Projects(props: ProjectsPageProps) {
+  const { projects } = props;
+
   return (
     <>
       <NextSeo
@@ -21,10 +32,7 @@ function Projects() {
             <h1 className="display-1 mb-3 title">Projects</h1>
           </Row>
           <Row>
-            <p>This is a work in progress. Stay tuned for more! 😉</p>
-          </Row>
-          <Row>
-            <p className="text-center m-0">
+            <h3 className="text-center m-0">
               See my GitHub profile{" "}
               <Link
                 className="align-self-center"
@@ -36,50 +44,89 @@ function Projects() {
                 <u>here</u>
               </Link>
               !
-            </p>
+            </h3>
           </Row>
-          {/* <Row md={4} xs={1} className="g-1 justify-content-center">
-            {[...Array(12).fill(1)].map((n, i) => (
+        </Container>
+        <Container className="mb-2">
+          <br />
+          <Row md={4} xs={1} className="g-1 justify-content-center">
+            {projects.map((p) => (
               <Col
-                key={i}
+                key={p.id}
                 md="auto"
                 className="d-flex align-items-stretch justify-content-center"
               >
                 <ProjectCard
-                  title="Test"
-                  description="This is a test project to see how a card looks."
-                  repoURL="https://github.com/ClamEater14/portfolio-site"
-                  prodURL="https://caleblamcodes.dev"
-                />
+                  title={p.title}
+                  description={p.description || undefined}
+                  repoURL={p.repoURL || undefined}
+                  prodURL={p.prodURL || undefined}
+                  imageURL={p.imageURL || undefined}
+                  key={p.id}
+                >
+                  {p.categories.map((c, i) => (
+                    <ProjectCardCategoryBadge
+                      key={i}
+                      categoryColor={c.color || "#FFFFFF"}
+                      categoryName={c.name || undefined}
+                    />
+                  ))}
+                </ProjectCard>
               </Col>
             ))}
-            <Col
-              md="auto"
-              className="d-flex align-items-stretch justify-content-center"
-            >
-              <ProjectCard
-                title="Test"
-                description="This is a test project to see how a card looks."
-                imageURL="https://www.rd.com/wp-content/uploads/2018/02/30_Adorable-Puppy-Pictures-that-Will-Make-You-Melt_124167640_YamabikaY.jpg?fit=700,467"
-              />
-            </Col>
-            <Col
-              md="auto"
-              className="d-flex align-items-stretch justify-content-center"
-            >
-              <ProjectCard
-                title="Test"
-                description="This is a test project to see how a card looks."
-                imageURL="https://toytheater.com/wp-content/uploads/cube.gif"
-                repoURL="https://github.com/ClamEater14/portfolio-site"
-                prodURL="https://caleblamcodes.dev"
-              />
-            </Col>
-          </Row> */}
+          </Row>
         </Container>
       </section>
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<ProjectsPageProps> = async (
+  context
+) => {
+  const params = [
+    "populate[Image][fields][0]=url",
+    "populate[categories][fields][0]=CategoryName",
+    "populate[categories][fields][1]=CategoryColor",
+    `pagination[pageSize]=${AppConfig.cardsPerPage}`,
+    `pagination[page]=${
+      parseInt(context.params?.page?.toString() || "1") ?? 1
+    }`,
+  ];
+  const paramsStr = params.join("&");
+  const res = await fetch(`${AppConfig.apiURL}/projects?${paramsStr}`, {
+    headers: {
+      Authorization: `bearer ${process.env.STRAPI_TOKEN}`,
+    },
+  });
+  const data = (await res.json()) as ProjectsData;
+
+  return {
+    props: {
+      currentPage: data.meta.pagination.page,
+      pageSize: data.meta.pagination.pageSize,
+      projects: data.data.map<ProjectItem>((collection): ProjectItem => {
+        return {
+          id: collection.id,
+          title: collection.attributes.Title || "(Untitled)",
+          description: collection.attributes.Description || null,
+          imageURL: collection.attributes.Image?.data?.attributes.url || null,
+          repoURL: collection.attributes.RepoURL || null,
+          prodURL: collection.attributes.ProdURL || null,
+          categories:
+            collection.attributes.categories?.data.map<CategoryItem>(
+              (catCollection): CategoryItem => {
+                return {
+                  id: catCollection.id,
+                  name: catCollection.attributes.CategoryName || null,
+                  color: catCollection.attributes.CategoryColor || null,
+                };
+              }
+            ) || [],
+        };
+      }),
+    },
+  };
+};
 
 export default Projects;

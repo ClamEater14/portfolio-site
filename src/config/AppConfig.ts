@@ -7,4 +7,6 @@ export class AppConfig {
 	static cardHeight: number = 180;
 	static logoURL: string = "https://files.caleblamcodes.dev/logo.svg";
 	static ogImageURL: string = "https://files.caleblamcodes.dev/logo.png";
+	static apiURL: string = "https://strapi.caleblamcodes.dev/api";
+	static cardsPerPage: number = 20;
 }
