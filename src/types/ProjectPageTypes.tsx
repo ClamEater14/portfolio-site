@@ -5,6 +5,7 @@ export interface ProjectItem {
   prodURL: string | null;
   repoURL: string | null;
   imageURL: string | null;
+  imageAlt: string | null;
   categories: CategoryItem[];
 }
 
@@ -17,22 +18,23 @@ export interface CategoryItem {
 export interface CategoryCollection {
   id: number;
   attributes: {
-    CategoryName: string;
-    CategoryColor: string;
+    name: string;
+    color: string;
   };
 }
 
 export interface ProjectCollection {
   id: number;
   attributes: {
-    Title: string;
-    Description?: string;
-    ProdURL?: string;
-    RepoURL?: string;
-    Image?: {
+    title: string;
+    description?: string;
+    prodURL?: string;
+    repoURL?: string;
+    image?: {
       data?: {
         attributes: {
           url: string;
+          alternativeText: string;
         };
       };
     };
@@ -48,7 +50,6 @@ export interface ProjectsData {
     pagination: {
       page: number;
       pageSize: number;
-      pageCount: number;
       total: number;
     };
   };

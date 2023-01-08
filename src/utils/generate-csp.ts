@@ -87,7 +87,9 @@ const generateCSP = ({ nonce }: GenerateCSPProps) => {
   add("style-src-attr", `'unsafe-inline'`);
 
   // connect-src
-  add("connect-src", `'self'`, { devOnly: true });
+  add("connect-src", `'self'`);
+  add("connect-src", `ws:`, { devOnly: true });
+  add("connect-src", `https://strapi.caleblamcodes.dev`);
 
   // font-src
   add("font-src", "https://fonts.googleapis.com");
@@ -95,9 +97,11 @@ const generateCSP = ({ nonce }: GenerateCSPProps) => {
   add("font-src", "data:");
 
   // img-src
+  add("img-src", `'self'`);
   add("img-src", "https://files.caleblamcodes.dev");
 
   // media-src
+  add("media-src", `'self'`);
   add("media-src", "https://files.caleblamcodes.dev");
 
   // frame-ancestors
