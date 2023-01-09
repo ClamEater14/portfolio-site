@@ -90,7 +90,7 @@ function Projects(initialProps: ProjectsPageProps) {
     string
   >(getParams(initialProps.currentPage), projectsFetcher, {
     revalidateOnMount: false,
-    revalidateOnFocus: false,
+    revalidateOnFocus: true,
     refreshInterval: 30 * 1000,
     fallbackData: initialProps,
     onSuccess: () => console.log(`Data refreshed at ${new Date().toString()}!`),
