@@ -84,13 +84,14 @@ const projectsFetcher = (params: string) =>
 
 function Projects(initialProps: ProjectsPageProps) {
   const router = useRouter();
-  const { data, error } = useSWRWithFallbackData<
+  const { data, isValidating, error } = useSWRWithFallbackData<
     ProjectsPageProps,
     any,
     string
   >(getParams(initialProps.currentPage), projectsFetcher, {
-    revalidateOnMount: false,
+    revalidateOnMount: true,
     revalidateOnFocus: true,
+    dedupingInterval: 30 * 1000,
     refreshInterval: 30 * 1000,
     fallbackData: initialProps,
     onSuccess: () => console.log(`Data refreshed at ${new Date().toString()}!`),
@@ -123,6 +124,40 @@ function Projects(initialProps: ProjectsPageProps) {
       previousLabel="<"
       renderOnZeroPageCount={() => null}
     />
+  );
+
+  const dataList = data ? (
+    data.projects.length > 0 ? (
+      data?.projects.map((p) => (
+        <Col
+          key={p.id}
+          md="auto"
+          className="d-flex align-items-stretch justify-content-center"
+        >
+          <ProjectCard
+            title={p.title}
+            description={p.description || undefined}
+            repoURL={p.repoURL || undefined}
+            prodURL={p.prodURL || undefined}
+            imageURL={p.imageURL || undefined}
+            imageAlt={p.imageAlt || undefined}
+            key={p.id}
+          >
+            {p.categories.map((c, i) => (
+              <ProjectCardCategoryBadge
+                key={i}
+                categoryColor={c.color || "#FFFFFF"}
+                categoryName={c.name || undefined}
+              />
+            ))}
+          </ProjectCard>
+        </Col>
+      ))
+    ) : (
+      <h3 className="text-center">Wow! Such empty!</h3>
+    )
+  ) : (
+    <h1 className="text-center">🤔</h1>
   );
 
   useEffect(() => {
@@ -160,39 +195,7 @@ function Projects(initialProps: ProjectsPageProps) {
         <Container className="mb-2">{pagination}</Container>
         <Container className="mb-2 h-auto">
           <Row md={4} xs={1} className="g-1 justify-content-center">
-            {data ? (
-              data.projects.length > 0 ? (
-                data?.projects.map((p) => (
-                  <Col
-                    key={p.id}
-                    md="auto"
-                    className="d-flex align-items-stretch justify-content-center"
-                  >
-                    <ProjectCard
-                      title={p.title}
-                      description={p.description || undefined}
-                      repoURL={p.repoURL || undefined}
-                      prodURL={p.prodURL || undefined}
-                      imageURL={p.imageURL || undefined}
-                      imageAlt={p.imageAlt || undefined}
-                      key={p.id}
-                    >
-                      {p.categories.map((c, i) => (
-                        <ProjectCardCategoryBadge
-                          key={i}
-                          categoryColor={c.color || "#FFFFFF"}
-                          categoryName={c.name || undefined}
-                        />
-                      ))}
-                    </ProjectCard>
-                  </Col>
-                ))
-              ) : (
-                <h3 className="text-center">Wow! Such empty!</h3>
-              )
-            ) : (
-              <h1 className="text-center">🤔</h1>
-            )}
+            {dataList}
           </Row>
         </Container>
         <Container className="mt-2 mb-4">{pagination}</Container>
