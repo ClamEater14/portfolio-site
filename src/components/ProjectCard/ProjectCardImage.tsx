@@ -9,7 +9,7 @@ interface ProjectCardImageProps
 }
 
 function ProjectCardImage(props: ProjectCardImageProps) {
-  const [loaded, setLoaded] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const imageRef = useRef<HTMLImageElement>(null);
   const { placeholderElement, alt, ...originalImageProps } = props;
 
@@ -20,18 +20,19 @@ function ProjectCardImage(props: ProjectCardImageProps) {
   }, []);
 
   if (!props.src) return <div>{placeholderElement}</div>;
-
   return (
     <>
-      <div hidden={loaded}>{placeholderElement}</div>
-      <Image
-        alt={alt}
-        ref={imageRef}
-        src={props.src}
-        {...originalImageProps}
-        hidden={!loaded}
-        onLoadingComplete={handleLoad}
-      />
+      {!loaded && <div>{placeholderElement}</div>}
+      <div className={loaded ? "visible" : "collapse"}>
+        <Image
+          alt={alt}
+          ref={imageRef}
+          src={props.src}
+          {...originalImageProps}
+          loading={"eager"}
+          onLoadingComplete={handleLoad}
+        />
+      </div>
     </>
   );
 }
