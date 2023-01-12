@@ -1,9 +1,10 @@
 import Image from "next/image";
 import React from "react";
 import { Card } from "react-bootstrap";
-import { AppConfig } from "../config/AppConfig";
-import { Icons } from "./Icons";
+import { AppConfig } from "../../config/AppConfig";
+import { Icons } from "../Icons";
 import { ProjectCardCategoryBadgeProps } from "./ProjectCardCategoryBadge";
+import ProjectCardImage from "./ProjectCardImage";
 
 export class ProjectCardProps {
   title: string = "(Project Title)";
@@ -22,34 +23,30 @@ function ProjectCard(props: ProjectCardProps) {
     <Card
       className="position-relative"
       bg="dark"
-      style={{ width: `${AppConfig.cardWidth}px` }}
+      style={{ width: `${AppConfig.cardImageWidth}px` }}
     >
-      {props.imageURL != undefined ? (
-        <Card.Img
-          variant="top"
-          as={Image}
-          src={props.imageURL}
-          style={{
-            objectFit: "contain",
-            padding: "10px",
-          }}
-          width={AppConfig.cardWidth}
-          height={AppConfig.cardHeight}
-          alt={props.imageAlt}
-          className="img-responsive"
-        />
-      ) : (
-        <Card.Img
-          variant="top"
-          as="div"
-          style={{
-            textAlign: "center",
-            padding: "10px",
-          }}
-        >
-          <Icons.QuestionMark size={AppConfig.cardHeight - 2 * 10} />
-        </Card.Img>
-      )}
+      <Card.Img
+        variant="top"
+        as={ProjectCardImage}
+        alt={props.imageAlt}
+        src={props.imageURL}
+        width={AppConfig.cardImageWidth}
+        height={AppConfig.cardImageHeight}
+        style={{
+          objectFit: "contain",
+          padding: `${AppConfig.cardImagePadding}px`,
+        }}
+        placeholderElement={
+          <div
+            style={{
+              textAlign: "center",
+              padding: "10px",
+            }}
+          >
+            <Icons.QuestionMark size={AppConfig.cardImageHeight - 2 * 10} />
+          </div>
+        }
+      />
       <Card.Body className="d-flex flex-column">
         <Card.Title>{props.title}</Card.Title>
         <Card.Subtitle>

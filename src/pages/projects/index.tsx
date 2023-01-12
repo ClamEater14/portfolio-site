@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import ProjectCard from "../../components/ProjectCard";
-import ProjectCardCategoryBadge from "../../components/ProjectCardCategoryBadge";
+import ProjectCardCategoryBadge from "../../components/ProjectCard/ProjectCardCategoryBadge";
 import { AppConfig } from "../../config/AppConfig";
 import {
   CategoryItem,
