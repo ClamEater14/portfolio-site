@@ -92,9 +92,10 @@ const generateCSP = ({ nonce }: GenerateCSPProps) => {
   add("connect-src", `https://strapi.caleblamcodes.dev`);
 
   // font-src
-  add("font-src", "https://fonts.googleapis.com");
-  add("font-src", "https://fonts.gstatic.com");
-  add("font-src", "data:");
+  add("font-src", "'self'");
+  // add("font-src", "https://fonts.googleapis.com");
+  // add("font-src", "https://fonts.gstatic.com");
+  // add("font-src", "data:");
 
   // img-src
   add("img-src", `'self'`);

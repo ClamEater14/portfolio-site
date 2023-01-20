@@ -7,12 +7,14 @@ import PageBase from "../components/PageBase";
 import { AppConfig } from "../config/AppConfig";
 import { ViewProvider } from "../context/ViewContext";
 import NextNProgress from "nextjs-progressbar";
+import { Exo_2 } from "@next/font/google";
 import "../styles/globals.scss";
-import "../styles/fonts.scss";
 import "../styles/vars.css";
 
 const TRANSITION_TIME = 0.5; // transition time in seconds
 const TRANSITION_EXIT_DELAY = 0.5; // delay before transition begins to exit in seconds
+
+const exo2 = Exo_2({ subsets: ["latin"] });
 
 const PageApp = ({ Component, pageProps }: AppProps) => {
   const [loading, setLoading] = useState(true); // show loading screen by default
@@ -61,7 +63,7 @@ const PageApp = ({ Component, pageProps }: AppProps) => {
           },
         ]}
       />
-      <div>
+      <div className={exo2.className}>
         <LoadingScreen duration={TRANSITION_TIME} loading={loading} />
         <NextNProgress color={AppConfig.hedronColor?.toString() ?? "#29D"} />
         <ViewProvider>

@@ -11,7 +11,7 @@ interface ProjectCardImageProps
 function ProjectCardImage(props: ProjectCardImageProps) {
   const [loaded, setLoaded] = useState(false);
   const imageRef = useRef<HTMLImageElement>(null);
-  const { placeholderElement, alt, ...originalImageProps } = props;
+  const { placeholderElement, alt, src, ...originalImageProps } = props;
 
   const handleLoad = () => setLoaded(true);
 
@@ -19,7 +19,7 @@ function ProjectCardImage(props: ProjectCardImageProps) {
     if (imageRef.current && imageRef.current.complete) handleLoad();
   }, []);
 
-  if (!props.src) return <div>{placeholderElement}</div>;
+  if (!src) return <div>{placeholderElement}</div>;
   return (
     <>
       {!loaded && <div>{placeholderElement}</div>}
@@ -27,7 +27,7 @@ function ProjectCardImage(props: ProjectCardImageProps) {
         <Image
           alt={alt}
           ref={imageRef}
-          src={props.src}
+          src={src}
           {...originalImageProps}
           loading={"eager"}
           onLoadingComplete={handleLoad}
