@@ -1,7 +1,6 @@
 :root {
 	--header-height: 0px;
 	--footer-height: 0px;
-	--loading-transition-duration: 1s;
 }
 
 .offset-header {

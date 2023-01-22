@@ -1,20 +1,19 @@
+import { Exo_2 } from "@next/font/google";
 import { DefaultSeo } from "next-seo";
 import App, { AppContext, AppInitialProps, AppProps } from "next/app";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import NextNProgress from "nextjs-progressbar";
+import { useEffect, useState } from "react";
 import LoadingScreen from "../components/LoadingScreen";
 import PageBase from "../components/PageBase";
 import { AppConfig } from "../config/AppConfig";
 import { ViewProvider } from "../context/ViewContext";
-import NextNProgress from "nextjs-progressbar";
-import { Exo_2 } from "@next/font/google";
 import "../styles/globals.scss";
 import "../styles/vars.css";
 
 const TRANSITION_TIME = 0.5; // transition time in seconds
-const TRANSITION_EXIT_DELAY = 0.5; // delay before transition begins to exit in seconds
 
-const exo2 = Exo_2({ subsets: ["latin"] });
+const exo2 = Exo_2({ subsets: ["latin"], display: "swap" });
 
 const PageApp = ({ Component, pageProps }: AppProps) => {
   const [loading, setLoading] = useState(true); // show loading screen by default

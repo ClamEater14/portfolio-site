@@ -20,12 +20,6 @@ function LoadingScreen({
 }: LoadingScreenProps) {
   const [visible, setVisible] = useState(false);
 
-  // useEffect(() => {
-  //   document.documentElement.style.setProperty(
-  //     "--loading-transition-duration",
-  //     `${duration ?? 1}s`
-  //   );
-  // }, [duration]);
   return (
     <Fade
       timeout={(duration ?? 1) * 1000}
