@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 interface ProjectCardImageProps
   extends Omit<ImageProps, "placeholder" | "placeholderURL" | "src"> {
+  noImageElement?: React.ReactElement;
   placeholderElement?: React.ReactElement;
   src?: string;
   alt: string;
@@ -11,7 +12,13 @@ interface ProjectCardImageProps
 function ProjectCardImage(props: ProjectCardImageProps) {
   const [loaded, setLoaded] = useState(false);
   const imageRef = useRef<HTMLImageElement>(null);
-  const { placeholderElement, alt, src, ...originalImageProps } = props;
+  const {
+    noImageElement,
+    placeholderElement,
+    alt,
+    src,
+    ...originalImageProps
+  } = props;
 
   const handleLoad = () => setLoaded(true);
 
@@ -19,7 +26,7 @@ function ProjectCardImage(props: ProjectCardImageProps) {
     if (imageRef.current && imageRef.current.complete) handleLoad();
   }, []);
 
-  if (!src) return <div>{placeholderElement}</div>;
+  if (!src) return <div>{noImageElement}</div>;
   return (
     <>
       {!loaded && <div>{placeholderElement}</div>}
