@@ -146,6 +146,7 @@ function Projects(initialProps: ProjectsPageProps) {
             {p.categories.map((c, i) => (
               <ProjectCardCategoryBadge
                 key={i}
+                categoryId={c.id}
                 categoryColor={c.color || "#FFFFFF"}
                 categoryName={c.name || undefined}
               />
