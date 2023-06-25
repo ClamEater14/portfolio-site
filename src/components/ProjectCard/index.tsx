@@ -36,7 +36,7 @@ function ProjectCard(props: ProjectCardProps) {
           objectFit: "contain",
           padding: `${AppConfig.cardImagePadding}px`,
         }}
-        placeholderElement={
+        noImageElement={
           <div
             style={{
               textAlign: "center",
@@ -44,6 +44,16 @@ function ProjectCard(props: ProjectCardProps) {
             }}
           >
             <Icons.QuestionMark size={AppConfig.cardImageHeight - 2 * 10} />
+          </div>
+        }
+        placeholderElement={
+          <div
+            style={{
+              textAlign: "center",
+              padding: "10px",
+            }}
+          >
+            <Icons.HourglassSplit size={AppConfig.cardImageHeight - 2 * 10} />
           </div>
         }
       />
