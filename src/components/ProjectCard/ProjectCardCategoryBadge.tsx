@@ -3,8 +3,19 @@ import { useId } from "react";
 import { Badge } from "react-bootstrap";
 
 export class ProjectCardCategoryBadgeProps {
+  categoryId: number;
   categoryName?: string;
   categoryColor: Property.BackgroundColor = "#FFFFFF";
+
+  constructor(
+    categoryId: number,
+    categoryName?: string,
+    categoryColor: Property.BackgroundColor = "#FFFFFF"
+  ) {
+    this.categoryId = categoryId;
+    this.categoryName = categoryName;
+    this.categoryColor = categoryColor;
+  }
 }
 
 function getTextColorFromBackground(
@@ -18,23 +29,22 @@ function getTextColorFromBackground(
 }
 
 export default function ProjectCardCategoryBadge({
+  categoryId,
   categoryName,
   categoryColor,
 }: ProjectCardCategoryBadgeProps) {
-  const reactId = useId();
-  const id = reactId.substring(1, reactId.length - 1);
   return (
     <>
       <style>
         {`
-          #category-badge-${id} {
+          .category-badge-${categoryId} {
             background-color: ${categoryColor} !important;
             color: ${getTextColorFromBackground(categoryColor)} !important;
             margin-right: 0.25rem !important;
           }
         `}
       </style>
-      <Badge id={`category-badge-${id}`}>{categoryName}</Badge>
+      <Badge className={`category-badge-${categoryId}`}>{categoryName}</Badge>
     </>
   );
 }
