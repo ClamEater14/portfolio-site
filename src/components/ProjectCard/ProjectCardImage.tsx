@@ -1,8 +1,7 @@
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
-interface ProjectCardImageProps
-  extends Omit<ImageProps, "placeholder" | "placeholderURL" | "src"> {
+interface ProjectCardImageProps {
   noImageElement?: React.ReactElement;
   placeholderElement?: React.ReactElement;
   src?: string;

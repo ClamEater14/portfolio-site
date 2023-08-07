@@ -1,7 +1,5 @@
-import crypto from 'crypto';
-
 const generateNonce = (): string => {
-  return crypto.randomBytes(16).toString('base64');
+  return Buffer.from(crypto.getRandomValues(new Uint8Array(16))).toString('base64');
 };
 
 export default generateNonce;

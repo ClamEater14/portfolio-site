@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import { Card } from "react-bootstrap";
 import { AppConfig } from "../../config/AppConfig";
@@ -8,7 +7,7 @@ import ProjectCardImage from "./ProjectCardImage";
 
 export class ProjectCardProps {
   title: string = "(Project Title)";
-  description?: string = "No description.";
+  description?: string = "";
   imageURL?: string = undefined;
   imageAlt?: string = undefined;
   prodURL?: string = undefined;

@@ -1,20 +1,14 @@
+"use client";
+
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { Icons } from "../components/Icons";
-import { useViewContext } from "../context/ViewContext";
 import { NextSeo } from "next-seo";
+import Link from "next/link";
+import { Metadata } from "next";
 
-export const config = {
-  runtime: "nodejs",
-};
-
-export default function Home() {
-  const { headerOffset } = useViewContext();
+const Home: React.FC = () => {
   return (
     <>
-      <NextSeo
-        title="Caleb Lam"
-        description="A software developer focused on backend development. Greetings!"
-      />
       <section id="about">
         <Container
           className="justify-content-center d-flex flex-column vh-100 offset-header"
@@ -45,7 +39,7 @@ export default function Home() {
                 gap={3}
                 className="justify-content-center align-self-center m-1"
               >
-                <a
+                <Link
                   className="align-self-center"
                   aria-label="Contact me via email"
                   href="https://linkedin.com/in/caleblam14"
@@ -54,8 +48,8 @@ export default function Home() {
                   color="#FFFFFF"
                 >
                   <Icons.LinkedIn size={32} />
-                </a>
-                <a
+                </Link>
+                <Link
                   className="align-self-center"
                   aria-label="Contact me via email"
                   href="https://github.com/clameater14"
@@ -64,8 +58,8 @@ export default function Home() {
                   color="#FFFFFF"
                 >
                   <Icons.GitHub size={32} />
-                </a>
-                <a
+                </Link>
+                <Link
                   className="align-self-center"
                   aria-label="Contact me via email"
                   href="mailto:caleb@caleblamcodes.dev"
@@ -74,7 +68,7 @@ export default function Home() {
                   color="#FFFFFF"
                 >
                   <Icons.EnvelopeFill size={32} />
-                </a>
+                </Link>
               </Stack>
             </Col>
           </Row>
@@ -100,4 +94,6 @@ export default function Home() {
       </section> */}
     </>
   );
-}
+};
+
+export default Home;
