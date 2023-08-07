@@ -2,9 +2,7 @@
 
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { Icons } from "../components/Icons";
-import { NextSeo } from "next-seo";
 import Link from "next/link";
-import { Metadata } from "next";
 
 const Home: React.FC = () => {
   return (
@@ -12,10 +10,6 @@ const Home: React.FC = () => {
       <section id="about">
         <Container
           className="justify-content-center d-flex flex-column vh-100 offset-header"
-          // style={{
-          //   height: "100vh",
-          //   marginTop: `-${headerOffset}px`,
-          // }}
           fluid
         >
           <Row className="align-self-center">
