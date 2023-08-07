@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: "Caleb Lam | Projects",
   description:
     "A software developer focused on backend development. See my projects here!",
+  openGraph: {
+    description:
+      "A software developer focused on backend development. See my projects here!",
+  },
 };
 
 const mapCollectionToItem = (collection: ProjectCollection): ProjectItem => {
