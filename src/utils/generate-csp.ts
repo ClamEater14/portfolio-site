@@ -55,7 +55,8 @@ const generateCSP = ({ nonce }: GenerateCSPProps) => {
   // script-src-elem
   add("script-src-elem", `'self'`);
   add("script-src-elem", `'nonce-${nonce}'`);
-  //add("script-src-elem", `'unsafe-inline'`, { devOnly: true });
+  add("script-src-elem", `'strict-dynamic'`);
+  add("script-src-elem", `'unsafe-inline'`, { devOnly: true });
 
   // script-src
   add("script-src", `'self'`);
