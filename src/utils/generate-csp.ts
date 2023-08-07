@@ -53,14 +53,13 @@ const generateCSP = ({ nonce }: GenerateCSPProps) => {
   add("default-src", `'self'`);
 
   // script-src-elem
-  add("script-src-elem", `'self'`);
+  add("script-src-elem", `'strict-dynamic'`);
   add("script-src-elem", `'nonce-${nonce}'`);
-  //add("script-src-elem", `'unsafe-inline'`, { devOnly: true });
 
   // script-src
   add("script-src", `'self'`);
   add("script-src", `'nonce-${nonce}'`);
-  add("script-src", `'unsafe-eval'`, { devOnly: true });
+  add("script-src", `'unsafe-eval'`);
 
   // style-src
   add("style-src", `'self'`);
