@@ -50,6 +50,7 @@ export default function RootLayout({ children }: RootProps) {
           <RootBodyLayout>
             <NextTopLoader
               color={AppConfig.hedronColor?.toString() ?? "#29D"}
+              showSpinner={false}
             />
             {children}
           </RootBodyLayout>
