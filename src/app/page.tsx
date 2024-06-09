@@ -21,8 +21,15 @@ const Home: React.FC = () => {
           </Row>
           <Row className="align-self-center">
             <Col className="align-self-center">
+              <h2 className="align-self-center text-center">
+                Software Developer
+              </h2>
+            </Col>
+          </Row>
+          <Row className="align-self-center">
+            <Col className="align-self-center">
               <h2 className="align-self-center text-center mb-3">
-                Backend Developer
+                Backend | Full-Stack
               </h2>
             </Col>
           </Row>
