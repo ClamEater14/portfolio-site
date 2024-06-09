@@ -5,6 +5,7 @@ import RootBodyLayout from "./RootBodyLayout";
 import "../styles/globals.scss";
 import "../styles/vars.css";
 import NextTopLoader from "nextjs-toploader";
+import { Viewport } from "next/dist/lib/metadata/types/metadata-interface";
 
 const exo2 = Exo_2({ subsets: ["latin"], display: "swap" });
 
@@ -12,7 +13,6 @@ export const metadata: Metadata = {
   title: "Caleb Lam",
   description:
     "A software developer focused on backend and cloud development. Greetings!",
-  themeColor: "#043A9B",
   openGraph: {
     url: "https://www.caleblamcodes.dev/",
     title: "Caleb Lam",
@@ -31,11 +31,13 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
   icons: AppConfig.logoURL,
+};
+
+export const viewport: Viewport = {
+  themeColor: "#043A9B",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export interface RootProps {
