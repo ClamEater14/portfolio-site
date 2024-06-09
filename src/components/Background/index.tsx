@@ -1,7 +1,6 @@
 import { Canvas, useThree } from "@react-three/fiber";
 import { AppConfig } from "../../config/AppConfig";
 import IcosahedronCage from "./IcosahedronCage";
-import BinaryCodeRain from "./BinaryCodeRain";
 
 interface BackgroundProps {
   onLoad?: () => void;
