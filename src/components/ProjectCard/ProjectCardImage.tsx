@@ -33,6 +33,7 @@ function ProjectCardImage(props: ProjectCardImageProps) {
         <Image
           alt={alt}
           ref={imageRef}
+          loader={() => src}
           src={src}
           {...originalImageProps}
           loading={"eager"}
