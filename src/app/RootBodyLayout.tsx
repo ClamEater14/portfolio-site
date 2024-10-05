@@ -15,16 +15,14 @@ export default function RootBodyLayout({ children }: RootBodyLayoutProps) {
   return (
     <>
       <LoadingScreen duration={TRANSITION_TIME} loading={loading} />
-      <ViewProvider>
-        <PageBase
-          onBackgroundLoad={() => {
-            setLoading(false);
-          }}
-          scrollable={!loading}
-        >
-          {!loading && children}
-        </PageBase>
-      </ViewProvider>
+      <PageBase
+        onBackgroundLoad={() => {
+          setLoading(false);
+        }}
+        scrollable={!loading}
+      >
+        {!loading && children}
+      </PageBase>
     </>
   );
 }

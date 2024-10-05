@@ -4,8 +4,8 @@ import { forwardRef } from "react";
 
 const Footer = forwardRef<HTMLElement>((_props, ref) => {
   return (
-    <footer ref={ref} className="position-absolute w-100 bottom-0">
-      <Container fluid className="bg-dark p-1">
+    <footer ref={ref}>
+      <Container fluid className="bg-dark p-1 100-vw">
         <p className="text-center m-2">&copy; 2022 Caleb Lam</p>
         <Stack
           direction="horizontal"

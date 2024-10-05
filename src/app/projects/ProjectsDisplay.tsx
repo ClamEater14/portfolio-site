@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -23,11 +24,11 @@ export default function ProjectsDisplay({ dataPage }: ProjectsDisplayProps) {
     <ReactPaginate
       breakClassName={"break-me"}
       pageClassName={"page-item"}
-      pageLinkClassName={"page-link bg-dark border-dark"}
+      pageLinkClassName={"page-link"}
       previousClassName={"page-item"}
-      previousLinkClassName={"page-link bg-dark border-dark"}
+      previousLinkClassName={"page-link"}
       nextClassName={"page-item"}
-      nextLinkClassName={"page-link bg-dark border-dark"}
+      nextLinkClassName={"page-link"}
       disabledClassName={"disabled"}
       activeClassName={"active"}
       containerClassName={"pagination m-0 justify-content-center"}

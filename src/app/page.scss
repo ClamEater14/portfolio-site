@@ -1,0 +1,12 @@
+@import "../globals.scss";
+
+.enlarge-on-hover {
+  &:hover {
+    transform: scale(1.5);
+    color: $link-hover-color;
+  }
+  
+  transition-property: all;
+  transition-duration: $standard-transition-time;
+  transition-timing-function: $standard-transition-timing-function;
+}

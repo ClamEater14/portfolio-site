@@ -1,4 +1,5 @@
-import { Canvas, useThree } from "@react-three/fiber";
+import React from "react";
+import { Canvas } from "@react-three/fiber";
 import { AppConfig } from "../../config/AppConfig";
 import IcosahedronCage from "./IcosahedronCage";
 

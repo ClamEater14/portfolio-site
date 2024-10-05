@@ -36,7 +36,7 @@ function ProjectCardImage(props: ProjectCardImageProps) {
           src={src}
           {...originalImageProps}
           loading={"eager"}
-          onLoadingComplete={handleLoad}
+          onLoad={handleLoad}
         />
       </div>
     </>

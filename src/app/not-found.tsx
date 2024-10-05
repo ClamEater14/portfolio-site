@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useViewContext } from "../context/ViewContext";
 import Link from "next/link";

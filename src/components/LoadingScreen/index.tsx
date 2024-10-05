@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
 import { AppConfig } from "../../config/AppConfig";

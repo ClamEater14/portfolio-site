@@ -1,8 +1,10 @@
 "use client";
 
+import React from "react";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { Icons } from "../components/Icons";
 import Link from "next/link";
+import "./page.scss";
 
 const Home: React.FC = () => {
   return (
@@ -41,32 +43,29 @@ const Home: React.FC = () => {
                 className="justify-content-center align-self-center m-1"
               >
                 <Link
-                  className="align-self-center"
+                  className="align-self-center enlarge-on-hover"
                   aria-label="Contact me via email"
                   href="https://linkedin.com/in/caleblam14"
                   rel="noopener noreferrer"
                   target="_blank"
-                  color="#FFFFFF"
                 >
                   <Icons.LinkedIn size={32} />
                 </Link>
                 <Link
-                  className="align-self-center"
+                  className="align-self-center enlarge-on-hover"
                   aria-label="Contact me via email"
                   href="https://github.com/clameater14"
                   rel="noopener noreferrer"
                   target="_blank"
-                  color="#FFFFFF"
                 >
                   <Icons.GitHub size={32} />
                 </Link>
                 <Link
-                  className="align-self-center"
+                  className="align-self-center enlarge-on-hover"
                   aria-label="Contact me via email"
                   href="mailto:caleb@caleblamcodes.dev"
                   rel="noopener noreferrer"
                   target="_blank"
-                  color="#FFFFFF"
                 >
                   <Icons.EnvelopeFill size={32} />
                 </Link>
@@ -76,7 +75,7 @@ const Home: React.FC = () => {
         </Container>
       </section>
       {/* <section id="skills">
-        <Container className="justify-content-center bg-dark" fluid>
+        <Container className="justify-content-center" fluid>
           <Row>
             <Col>
               <h1 className="display-1 align-self-center text-center title">

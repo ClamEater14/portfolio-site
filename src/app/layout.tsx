@@ -2,8 +2,7 @@ import { Exo_2 } from "next/font/google";
 import { AppConfig } from "../config/AppConfig";
 import { Metadata } from "next";
 import RootBodyLayout from "./RootBodyLayout";
-import "../styles/globals.scss";
-import "../styles/vars.css";
+import "../globals.scss";
 import NextTopLoader from "nextjs-toploader";
 import { Viewport } from "next/dist/lib/metadata/types/metadata-interface";
 
@@ -46,7 +45,7 @@ export interface RootProps {
 
 export default function RootLayout({ children }: RootProps) {
   return (
-    <html>
+    <html data-bs-theme="dark">
       <body>
         <div className={exo2.className}>
           <RootBodyLayout>

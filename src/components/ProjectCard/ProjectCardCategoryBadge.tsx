@@ -1,5 +1,5 @@
+import React from "react";
 import { Property } from "csstype";
-import { useId } from "react";
 import { Badge } from "react-bootstrap";
 
 export class ProjectCardCategoryBadgeProps {

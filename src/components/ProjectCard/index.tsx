@@ -21,7 +21,6 @@ function ProjectCard(props: ProjectCardProps) {
   return (
     <Card
       className="position-relative"
-      bg="dark"
       style={{ width: `${AppConfig.cardImageWidth}px` }}
     >
       <Card.Img

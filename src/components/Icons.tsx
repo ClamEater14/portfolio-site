@@ -1,4 +1,4 @@
-export module Icons {
+export namespace Icons {
   export class IconProps {
     size: number = 0;
   }
