@@ -29,20 +29,19 @@ export const metadata: Metadata = {
 const mapCollectionToItem = (collection: ProjectCollection): ProjectItem => {
   return {
     id: collection.id,
-    title: collection.attributes.title || "(Untitled)",
-    description: collection.attributes.description || null,
-    imageURL: collection.attributes.image?.data?.attributes.url || null,
-    imageAlt:
-      collection.attributes.image?.data?.attributes.alternativeText || null,
-    repoURL: collection.attributes.repoURL || null,
-    prodURL: collection.attributes.prodURL || null,
+    title: collection.title || "(Untitled)",
+    description: collection.description || null,
+    imageURL: collection.image?.url || null,
+    imageAlt: collection.image?.alternativeText || null,
+    repoURL: collection.repoURL || null,
+    prodURL: collection.prodURL || null,
     categories:
-      collection.attributes.categories?.data.map<CategoryItem>(
+      collection.categories?.map<CategoryItem>(
         (catCollection): CategoryItem => {
           return {
             id: catCollection.id,
-            name: catCollection.attributes.name,
-            color: catCollection.attributes.color,
+            name: catCollection.name,
+            color: catCollection.color,
           };
         }
       ) || [],

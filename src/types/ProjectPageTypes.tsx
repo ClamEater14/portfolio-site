@@ -17,31 +17,22 @@ export interface CategoryItem {
 
 export interface CategoryCollection {
   id: number;
-  attributes: {
-    name: string;
-    color: string;
-  };
+  name: string;
+  color: string;
 }
 
 export interface ProjectCollection {
   id: number;
-  attributes: {
-    title: string;
-    description?: string;
-    prodURL?: string;
-    repoURL?: string;
-    image?: {
-      data?: {
-        attributes: {
-          url: string;
-          alternativeText: string;
-        };
-      };
-    };
-    categories?: {
-      data: CategoryCollection[];
-    };
+  documentId: string;
+  title: string;
+  description?: string;
+  prodURL?: string;
+  repoURL?: string;
+  image?: {
+    url: string;
+    alternativeText: string;
   };
+  categories?: CategoryCollection[];
 }
 
 export interface ProjectsData {
