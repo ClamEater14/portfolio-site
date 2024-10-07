@@ -16,6 +16,8 @@ function ProjectCardImage(props: ProjectCardImageProps) {
     placeholderElement,
     alt,
     src,
+
+    // Other props as supplied by CardImgProps
     ...originalImageProps
   } = props;
 
@@ -33,7 +35,7 @@ function ProjectCardImage(props: ProjectCardImageProps) {
         <Image
           alt={alt}
           ref={imageRef}
-          loader={() => src}
+          loader={({ src }) => src}
           src={src}
           {...originalImageProps}
           loading={"eager"}
