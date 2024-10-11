@@ -71,9 +71,9 @@ const dataToProps = (d: ProjectsData): ProjectDataPage => {
     currentPage: d.meta.pagination.page,
     pageSize: d.meta.pagination.pageSize,
     total: d.meta.pagination.total,
-    projects: d.data.map<ProjectItem>((collection) =>
-      mapCollectionToItem(collection)
-    ),
+    projects: d.data
+      .map<ProjectItem>((collection) => mapCollectionToItem(collection))
+      .sort((a, b) => a.title.localeCompare(b.title)),
   };
 };
 
