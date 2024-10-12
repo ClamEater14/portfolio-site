@@ -87,7 +87,6 @@ const projectsFetcher = (params: string) =>
         throw new TypeError("Oops, we haven't got JSON!");
       }
       const jsonData = await res.json();
-      console.log(jsonData);
       return jsonData;
     })
     .then((j): ProjectsData => j as ProjectsData)
