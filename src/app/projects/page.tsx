@@ -83,7 +83,20 @@ const projectsFetcher = (params: string) =>
   })
     .then((res) => res.json())
     .then((j): ProjectsData => j as ProjectsData)
-    .then((d) => dataToProps(d));
+    .then((d) => dataToProps(d))
+    .catch<ProjectDataPage>((err) => {
+      console.error(err);
+      return dataToProps({
+        data: [],
+        meta: {
+          pagination: {
+            page: 1,
+            pageSize: 0,
+            total: 0,
+          },
+        },
+      });
+    });
 
 const getProjects = async (page: number = 1) => {
   const apiParams = getDataFetchParams(page);
