@@ -79,7 +79,7 @@ const dataToProps = (d: ProjectsData): ProjectDataPage => {
 
 const projectsFetcher = (params: string) =>
   fetch(`${AppConfig.apiURL}/projects?${params}`, {
-    next: { revalidate: 30 * 1000 },
+    next: { revalidate: 30 },
   })
     .then(async (res) => {
       const contentType = res.headers.get("content-type");
