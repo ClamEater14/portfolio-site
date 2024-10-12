@@ -81,7 +81,15 @@ const projectsFetcher = (params: string) =>
   fetch(`${AppConfig.apiURL}/projects?${params}`, {
     next: { revalidate: 30 * 1000 },
   })
-    .then((res) => res.json())
+    .then(async (res) => {
+      const contentType = res.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new TypeError("Oops, we haven't got JSON!");
+      }
+      const jsonData = await res.json();
+      console.log(jsonData);
+      return jsonData;
+    })
     .then((j): ProjectsData => j as ProjectsData)
     .then((d) => dataToProps(d))
     .catch<ProjectDataPage>((err) => {
