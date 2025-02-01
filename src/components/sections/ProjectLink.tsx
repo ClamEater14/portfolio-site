@@ -2,6 +2,10 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Col, Container, Row } from "react-bootstrap";
 
+import * as Icons from "../Icons";
+
+import "./index.scss";
+
 const ProjectLinkSection = () => {
   return (
     <section id="projects">
@@ -21,12 +25,20 @@ const ProjectLinkSection = () => {
             >
               <Container className="d-flex justify-content-center">
                 <Link href="/projects">
-                  {/* TODO: use React-Bootstrap's button */}
-                  <button className="btn btn-primary">
-                    <span className="display-2">
-                      <b>\uD83D\uDCC1 View Projects</b>
+                  <motion.button
+                    initial={{ scale: 1, backgroundColor: "#007bff" }}
+                    whileHover={{ scale: 1.1, backgroundColor: "#004186" }}
+                    transition={{ duration: 0.2, type: "spring", stiffness: 250 }}
+                    style={{
+                      borderRadius: "64px",
+                    }}
+                    className="btn btn-lg"
+                  >
+                    <span className="display-2 m-3 d-flex align-items-center">
+                      <Icons.Folder size={128} />
+                      <span className="ms-4 display-1 subtitle">View Projects</span>
                     </span>
-                  </button>
+                  </motion.button>
                 </Link>
               </Container>
             </motion.div>

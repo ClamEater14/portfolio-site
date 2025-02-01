@@ -2,7 +2,7 @@ import { Color } from "@react-three/fiber";
 import { Property } from "csstype";
 
 export class AppConfig {
-  static backgroundColor: Property.Background = "#000000"; //"#212121";
+  static backgroundColor: Property.Background = "#000000";
   static hedronColor: Color = "#00b3ff";
   static primaryColor: string = "#00FFFF";
   static cardImageWidth: number = 320;
