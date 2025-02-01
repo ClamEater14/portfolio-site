@@ -7,20 +7,14 @@ export class ProjectCardCategoryBadgeProps {
   categoryName?: string;
   categoryColor: Property.BackgroundColor = "#FFFFFF";
 
-  constructor(
-    categoryId: number,
-    categoryName?: string,
-    categoryColor: Property.BackgroundColor = "#FFFFFF"
-  ) {
+  constructor(categoryId: number, categoryName?: string, categoryColor: Property.BackgroundColor = "#FFFFFF") {
     this.categoryId = categoryId;
     this.categoryName = categoryName;
     this.categoryColor = categoryColor;
   }
 }
 
-function getTextColorFromBackground(
-  bgColor: Property.BackgroundColor
-): Property.BackgroundColor {
+function getTextColorFromBackground(bgColor: Property.BackgroundColor): Property.BackgroundColor {
   const r: number = parseInt(bgColor.substring(1, 3), 16);
   const g: number = parseInt(bgColor.substring(3, 5), 16);
   const b: number = parseInt(bgColor.substring(5, 7), 16);

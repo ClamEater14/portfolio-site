@@ -1,17 +1,13 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { motion } from "motion/react";
 import { Col, Container, Row } from "react-bootstrap";
-import ReactPaginate from "react-paginate";
+
+import AnimatedLink from "../../components/Link";
 import ProjectCard from "../../components/ProjectCard";
 import ProjectCardCategoryBadge from "../../components/ProjectCard/ProjectCardCategoryBadge";
-import { AppConfig } from "../../config/AppConfig";
 import { ProjectDataPage } from "./page";
-import AnimatedLink from "../../components/Link";
 
 export interface ProjectsDisplayProps {
   dataPage?: ProjectDataPage;
@@ -21,11 +17,7 @@ export default function ProjectsDisplay({ dataPage }: ProjectsDisplayProps) {
   const dataList = dataPage ? (
     dataPage.projects.length > 0 ? (
       dataPage?.projects.map((p, i) => (
-        <Col
-          key={p.id}
-          md="auto"
-          className="d-flex align-items-stretch justify-content-center"
-        >
+        <Col key={p.id} md="auto" className="d-flex align-items-stretch justify-content-center">
           <motion.div
             className="d-flex align-items-stretch justify-content-center"
             initial={{ opacity: 0, scale: 0 }}

@@ -1,18 +1,15 @@
-import { Container, Stack } from "react-bootstrap";
-import { Icons } from "./Icons";
 import { forwardRef } from "react";
+import { Container, Stack } from "react-bootstrap";
+
+import * as Icons from "./Icons";
 import IconLink from "./Link/IconLink";
 
 const Footer = forwardRef<HTMLElement>((_props, ref) => {
   return (
     <footer ref={ref}>
       <Container fluid className="bg-dark p-1 100-vw">
-        <p className="text-center m-2">&copy; 2022 Caleb Lam</p>
-        <Stack
-          direction="horizontal"
-          gap={3}
-          className="justify-content-center align-self-center m-2"
-        >
+        <p className="text-center m-2">&copy; 2025 Caleb Lam</p>
+        <Stack direction="horizontal" gap={3} className="justify-content-center align-self-center m-2">
           <IconLink
             className="align-self-center"
             ariaLabel="View my LinkedIn profile"

@@ -1,22 +1,23 @@
-import { Exo_2 } from "next/font/google";
-import { AppConfig } from "../config/AppConfig";
 import { Metadata } from "next";
+import { Exo_2 } from "next/font/google";
+
+import { AppConfig } from "../config/AppConfig";
 import RootBodyLayout from "./RootBodyLayout";
+
 import "../globals.scss";
-import NextTopLoader from "nextjs-toploader";
+
 import { Viewport } from "next/dist/lib/metadata/types/metadata-interface";
+import NextTopLoader from "nextjs-toploader";
 
 const exo2 = Exo_2({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "Caleb Lam",
-  description:
-    "A software developer focused on backend and cloud development. Greetings!",
+  description: "A software developer focused on backend and cloud development. Greetings!",
   openGraph: {
     url: "https://www.caleblamcodes.dev/",
     title: "Caleb Lam",
-    description:
-      "A software developer focused on backend development. Greetings!",
+    description: "A software developer focused on backend development. Greetings!",
     images: [
       {
         url: AppConfig.ogImageURL,
@@ -49,10 +50,7 @@ export default function RootLayout({ children }: RootProps) {
       <body>
         <div className={exo2.className}>
           <RootBodyLayout>
-            <NextTopLoader
-              color={AppConfig.hedronColor?.toString() ?? "#29D"}
-              showSpinner={false}
-            />
+            <NextTopLoader color={AppConfig.hedronColor?.toString() ?? "#29D"} showSpinner={false} />
             {children}
           </RootBodyLayout>
         </div>

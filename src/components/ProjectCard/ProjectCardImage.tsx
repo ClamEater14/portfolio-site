@@ -1,5 +1,5 @@
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 interface ProjectCardImageProps {
   noImageElement?: React.ReactElement<any>;

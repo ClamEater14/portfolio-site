@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useAnimate } from "motion/react";
+
 // Removed unused import
 import { AppConfig } from "../../config/AppConfig";
-import { AnimationPlaybackControls, useAnimate } from "motion/react";
 
 interface LoadingScreenProps {
   loading?: boolean;
@@ -23,73 +24,83 @@ function LoadingScreen({
 }: LoadingScreenProps) {
   const [visible, setVisible] = useState(true);
   const [startFading, setStartFading] = useState(false);
+  const [exiting, setExiting] = useState(false);
   const [logo, animateLogo] = useAnimate<HTMLDivElement>();
   const [screen, animateScreen] = useAnimate<HTMLDivElement>();
-  const [currentAnimControls, setCurrentAnimControls] = useState<
-    AnimationPlaybackControls | undefined
-  >(undefined);
+  const [currLoopTime, setCurrLoopTime] = useState(0);
 
   useEffect(() => {
-    if (loading) {
-      setCurrentAnimControls(
-        animateLogo(
-          logo.current,
-          {
-            clipPath: ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)"],
-          },
-          {
-            duration: logoFillDuration,
-            repeat: Infinity,
-            repeatType: "loop",
-          }
-        )
-      );
-    } else if (!startFading) {
-      const finishCurrLoop = async () => {
-        currentAnimControls?.stop();
-        await animateLogo(
-          logo.current,
-          {
-            clipPath: "inset(0% 0% 0% 0%)",
-          },
-          {
-            duration: logoFillDuration - (currentAnimControls?.time ?? 0),
-            repeat: 0,
-          }
-        );
-        setStartFading(true);
-      };
-
-      finishCurrLoop();
-    } else {
-      const doExit = () => {
-        if (onExited) onExited();
-        setVisible(false); // Unmount the component
-      };
-      const exitAnim = async () => {
-        animateLogo(
-          logo.current,
-          { rotate: [0, 360] },
-          { duration: transitionDuration }
-        );
-        animateScreen(
-          screen.current,
-          { opacity: 0 },
-          { duration: transitionDuration }
-        ).then(doExit);
-      };
-
-      if (onExiting) onExiting();
-      exitAnim();
+    if (!loading) {
+      return;
     }
-  }, [loading, startFading]);
+
+    const anim = animateLogo(
+      logo.current,
+      {
+        clipPath: ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)"],
+      },
+      {
+        duration: logoFillDuration,
+        repeat: Infinity,
+        repeatType: "loop",
+      }
+    );
+
+    if (onEntered) onEntered();
+
+    return () => {
+      anim.stop();
+      setCurrLoopTime(anim.time);
+    };
+  }, [animateLogo, loading, logo, logoFillDuration, onEntered]);
 
   useEffect(() => {
-    if (loading) {
-      if (onEntered) onEntered();
+    if (loading || startFading) {
+      return;
     }
-  }, [loading]);
 
+    animateLogo(
+      logo.current,
+      {
+        clipPath: "inset(0% 0% 0% 0%)",
+      },
+      {
+        duration: logoFillDuration - currLoopTime,
+        repeat: 0,
+      }
+    ).then(() => setStartFading(true));
+  }, [animateLogo, currLoopTime, loading, logo, logoFillDuration, startFading]);
+
+  useEffect(() => {
+    if (loading || !startFading || exiting) {
+      return;
+    }
+    setExiting(true);
+
+    const doExit = () => {
+      if (onExited) onExited();
+      setVisible(false); // Unmount the component
+    };
+
+    const exitAnim = async () => {
+      animateLogo(logo.current, { rotate: [0, 360] }, { duration: transitionDuration });
+      animateScreen(screen.current, { opacity: 0 }, { duration: transitionDuration }).then(doExit);
+    };
+
+    if (onExiting) onExiting();
+    exitAnim();
+  }, [
+    animateLogo,
+    animateScreen,
+    exiting,
+    loading,
+    logo,
+    onExited,
+    onExiting,
+    screen,
+    startFading,
+    transitionDuration,
+  ]);
   if (!visible) return null; // Conditionally render the component
 
   return (
@@ -100,13 +111,7 @@ function LoadingScreen({
       }`}
     >
       <div ref={logo} style={{ clipPath: "inset(100% 0% 0% 0%)" }}>
-        <Image
-          src={AppConfig.logoURL}
-          priority
-          width={100}
-          height={100}
-          alt="Caleb Lam logo"
-        />
+        <Image src={AppConfig.logoURL} priority width={100} height={100} alt="Caleb Lam logo" />
       </div>
     </div>
   );

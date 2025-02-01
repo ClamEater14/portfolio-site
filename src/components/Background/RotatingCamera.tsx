@@ -1,6 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import { PerspectiveCamera } from "three";
-import { useFrame, useThree } from "@react-three/fiber";
+import React from "react";
+import { useFrame } from "@react-three/fiber";
 
 export interface RotatingCameraProps {
   radiansPerFrame: number;

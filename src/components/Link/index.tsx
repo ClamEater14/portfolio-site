@@ -1,10 +1,11 @@
 "use client";
 
-import { motion } from "motion/react";
-import { HTMLAttributeAnchorTarget } from "react";
 import { UrlObject } from "url";
-import { AppConfig } from "../../config/AppConfig";
+import { HTMLAttributeAnchorTarget } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
+
+import { AppConfig } from "../../config/AppConfig";
 
 type Url = string | UrlObject;
 
@@ -43,13 +44,7 @@ const AnimatedLink: React.FC<LinkProps> = ({
       }}
       transition={{ duration: animationDuration }}
     >
-      <Link
-        className={className}
-        aria-label={ariaLabel}
-        href={href}
-        rel={rel}
-        target={target}
-      >
+      <Link className={className} aria-label={ariaLabel} href={href} rel={rel} target={target}>
         <motion.span
           initial={{ color: color }}
           whileHover={{

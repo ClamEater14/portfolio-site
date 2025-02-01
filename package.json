@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint \"src/**/*.+(ts|tsx)\"",
+    "lint:fix": "eslint \"src/**/*.+(ts|tsx)\" --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "dependencies": {
     "@react-three/drei": "^10.0.0-rc.1",
@@ -16,11 +19,9 @@
     "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3",
     "bootstrap": "^5.3.3",
-    "eslint": "8.32.0",
     "motion": "^12.0.6",
     "next": "15.1.6",
     "nextjs-toploader": "^1.6.12",
-    "portfolio-site": "file:",
     "qs": "^6.14.0",
     "react": "19.0.0",
     "react-bootstrap": "^2.10.9",
@@ -33,8 +34,18 @@
     "typescript": "5.0.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.18.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
     "@types/three": "^0.148.1",
-    "eslint-config-next": "15.1.6"
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
+    "eslint": "^9.18.0",
+    "eslint-config-next": "^15.1.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-sort-json": "^4.1.1"
   },
   "engines": {
     "node": ">=18"

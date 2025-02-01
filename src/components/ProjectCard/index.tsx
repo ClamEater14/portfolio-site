@@ -1,10 +1,11 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+
 import { AppConfig } from "../../config/AppConfig";
-import { Icons } from "../Icons";
+import * as Icons from "../Icons";
+import AnimatedIconLink from "../Link/IconLink";
 import { ProjectCardCategoryBadgeProps } from "./ProjectCardCategoryBadge";
 import ProjectCardImage from "./ProjectCardImage";
-import AnimatedIconLink from "../Link/IconLink";
 
 export class ProjectCardProps {
   title: string = "(Project Title)";
@@ -13,17 +14,12 @@ export class ProjectCardProps {
   imageAlt?: string = undefined;
   prodURL?: string = undefined;
   repoURL?: string = undefined;
-  children?:
-    | React.ReactElement<ProjectCardCategoryBadgeProps>
-    | React.ReactElement<ProjectCardCategoryBadgeProps>[];
+  children?: React.ReactElement<ProjectCardCategoryBadgeProps> | React.ReactElement<ProjectCardCategoryBadgeProps>[];
 }
 
 function ProjectCard(props: ProjectCardProps) {
   return (
-    <Card
-      className="position-relative"
-      style={{ width: `${AppConfig.cardImageWidth}px` }}
-    >
+    <Card className="position-relative" style={{ width: `${AppConfig.cardImageWidth}px` }}>
       <Card.Img
         variant="top"
         as={ProjectCardImage}

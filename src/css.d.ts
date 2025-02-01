@@ -5,3 +5,5 @@ declare module "csstype" {
     [index: string]: any;
   }
 }
+
+export default CSS;

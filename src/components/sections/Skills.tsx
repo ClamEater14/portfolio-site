@@ -1,4 +1,5 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+
 import SkillsRow from "../SkillsDisplay";
 
 const SkillsSection = () => {
@@ -7,9 +8,7 @@ const SkillsSection = () => {
       <Container className="justify-content-center bg-dark" fluid>
         <Row>
           <Col>
-            <h1 className="display-1 align-self-center text-center title">
-              Skills
-            </h1>
+            <h1 className="display-1 align-self-center text-center title">Skills</h1>
           </Col>
         </Row>
         <Row>
@@ -50,12 +49,7 @@ const SkillsSection = () => {
             />
           </Col>
           <Col>
-            <SkillsRow
-              header="Platforms"
-              skills={[
-                { image: "/skills/aws.svg", name: "Amazon Web Services" },
-              ]}
-            />
+            <SkillsRow header="Platforms" skills={[{ image: "/skills/aws.svg", name: "Amazon Web Services" }]} />
           </Col>
         </Row>
         <Row>

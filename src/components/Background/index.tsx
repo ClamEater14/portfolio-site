@@ -1,6 +1,7 @@
 import React from "react";
-import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+
 import { AppConfig } from "../../config/AppConfig";
 import IcosahedronCage from "./IcosahedronCage";
 import RotatingCamera from "./RotatingCamera";
@@ -30,15 +31,7 @@ function Background({ onLoad }: BackgroundProps) {
       >
         <RotatingCamera radiansPerFrame={0.03} />
         <IcosahedronCage />
-        <Stars
-          radius={100}
-          depth={50}
-          count={5000}
-          factor={4}
-          saturation={0}
-          speed={2}
-          fade
-        />
+        <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} speed={2} fade />
       </Canvas>
     </>
   );

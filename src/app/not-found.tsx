@@ -1,8 +1,8 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useViewContext } from "../context/ViewContext";
-import Link from "next/link";
 import { Metadata } from "next";
+import { Col, Container, Row } from "react-bootstrap";
+
+import AnimatedLink from "../components/Link";
 
 export const metadata: Metadata = {
   title: "Uh Oh... (404)",
@@ -36,9 +36,9 @@ const Error = () => {
         <Row>
           <Col>
             <h2>You seem lost and confused...</h2>
-            <Link href="/">
+            <AnimatedLink enlargeOnHover={false} href="/">
               <u>Let&apos;s go back Home!</u>
-            </Link>
+            </AnimatedLink>
           </Col>
         </Row>
       </Container>

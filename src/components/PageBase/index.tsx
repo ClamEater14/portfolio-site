@@ -1,9 +1,9 @@
 import React from "react";
-import { useCallback } from "react";
-// import Background from "./Background";
 import dynamic from "next/dynamic";
+
 import Footer from "../Footer";
 import Header from "../Header";
+
 import "./index.scss";
 
 class PageBaseProps {

@@ -64,7 +64,7 @@ const generateCSP = ({ nonce }: GenerateCSPProps) => {
 
   // style-src
   add("style-src", `'self'`);
-  add("style-src", "https:")
+  add("style-src", "https:");
   // add("style-src", `'nonce-${nonce}'`);
   add("style-src", "https://fonts.googleapis.com");
   add("style-src", "https://fonts.gstatic.com");

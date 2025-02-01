@@ -1,12 +1,8 @@
 import { Metadata } from "next";
 import QueryString from "qs";
+
 import { AppConfig } from "../../config/AppConfig";
-import {
-  CategoryItem,
-  ProjectCollection,
-  ProjectItem,
-  ProjectsData,
-} from "../../types/ProjectPageTypes";
+import { CategoryItem, ProjectCollection, ProjectItem, ProjectsData } from "../../types/ProjectPageTypes";
 import ProjectsDisplay from "./ProjectsDisplay";
 
 export type ProjectDataPage = {
@@ -18,11 +14,9 @@ export type ProjectDataPage = {
 
 export const metadata: Metadata = {
   title: "Caleb Lam | Projects",
-  description:
-    "A software developer focused on backend development. See my projects here!",
+  description: "A software developer focused on backend development. See my projects here!",
   openGraph: {
-    description:
-      "A software developer focused on backend development. See my projects here!",
+    description: "A software developer focused on backend development. See my projects here!",
   },
 };
 
@@ -36,15 +30,13 @@ const mapCollectionToItem = (collection: ProjectCollection): ProjectItem => {
     repoURL: collection.repoURL || null,
     prodURL: collection.prodURL || null,
     categories:
-      collection.categories?.map<CategoryItem>(
-        (catCollection): CategoryItem => {
-          return {
-            id: catCollection.id,
-            name: catCollection.name,
-            color: catCollection.color,
-          };
-        }
-      ) || [],
+      collection.categories?.map<CategoryItem>((catCollection): CategoryItem => {
+        return {
+          id: catCollection.id,
+          name: catCollection.name,
+          color: catCollection.color,
+        };
+      }) || [],
   };
 };
 
@@ -108,11 +100,7 @@ const getProjects = async () => {
   return propsToReturn;
 };
 
-export default async function Projects(props: {
-  params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const searchParams = await props.searchParams;
+export default async function Projects() {
   const dataPage = await getProjects();
 
   return <ProjectsDisplay dataPage={dataPage} />;

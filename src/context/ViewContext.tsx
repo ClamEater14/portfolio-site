@@ -23,9 +23,7 @@ export const ViewProvider = ({ children }: any) => {
   const [footerOffset, setFooterOffset] = react.useState(0);
 
   return (
-    <ViewContext.Provider
-      value={{ headerOffset, setHeaderOffset, footerOffset, setFooterOffset }}
-    >
+    <ViewContext.Provider value={{ headerOffset, setHeaderOffset, footerOffset, setFooterOffset }}>
       {children}
     </ViewContext.Provider>
   );

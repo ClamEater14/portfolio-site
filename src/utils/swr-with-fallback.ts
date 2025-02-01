@@ -1,11 +1,7 @@
-import { useEffect, useRef } from 'react';
-import useSWR, { Fetcher, Key, SWRConfiguration } from 'swr';
+import { useEffect, useRef } from "react";
+import useSWR, { Fetcher, Key, SWRConfiguration } from "swr";
 
-export default function useSWRWithFallbackData<
-  Data = any,
-  Error = any,
-  SWRKey extends Key = null
->(
+export default function useSWRWithFallbackData<Data = any, Error = any, SWRKey extends Key = null>(
   key: SWRKey,
   fetcher: Fetcher<Data, SWRKey> | null,
   options: SWRConfiguration<Data, Error, Fetcher<Data, SWRKey>> | undefined

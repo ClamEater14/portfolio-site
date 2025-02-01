@@ -1,6 +1,7 @@
-import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import { BoxHelper, Mesh, PerspectiveCamera } from "three";
+import { useFrame } from "@react-three/fiber";
+import { Mesh } from "three";
+
 import { AppConfig } from "../../config/AppConfig";
 
 function IcosahedronCage() {
@@ -18,12 +19,7 @@ function IcosahedronCage() {
     <group position={[0, 0, 5]}>
       <mesh ref={shapeRef}>
         <icosahedronGeometry args={[3, 2]} />
-        <meshBasicMaterial
-          color={AppConfig.hedronColor}
-          wireframe
-          transparent
-          opacity={0.75}
-        />
+        <meshBasicMaterial color={AppConfig.hedronColor} wireframe transparent opacity={0.75} />
       </mesh>
     </group>
   );
