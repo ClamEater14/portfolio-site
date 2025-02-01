@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { JSX, useEffect, useMemo, useState } from "react";
 import LoadingScreen from "../components/LoadingScreen";
 import PageBase from "../components/PageBase";
 import { ViewProvider } from "../context/ViewContext";
-const TRANSITION_TIME = 0.5; // transition time in seconds
+
+const TRANSITION_TIME = 1; // transition time in seconds
+const LOGO_FILL_DURATION = 1;
 
 export interface RootBodyLayoutProps {
   children: React.ReactNode;
@@ -12,16 +14,22 @@ export interface RootBodyLayoutProps {
 
 export default function RootBodyLayout({ children }: RootBodyLayoutProps) {
   const [loading, setLoading] = useState(true); // show loading screen by default
+  const [exiting, setExiting] = useState(false);
+
   return (
     <>
-      <LoadingScreen duration={TRANSITION_TIME} loading={loading} />
+      <LoadingScreen
+        transitionDuration={TRANSITION_TIME}
+        logoFillDuration={LOGO_FILL_DURATION}
+        loading={loading}
+        onExiting={() => setExiting(true)}
+        onExited={() => console.log("Loading done!")}
+      />
       <PageBase
-        onBackgroundLoad={() => {
-          setLoading(false);
-        }}
-        scrollable={!loading}
+        onBackgroundLoad={() => setLoading(false)}
+        scrollable={!loading && exiting}
       >
-        {!loading && children}
+        {!loading && exiting && children}
       </PageBase>
     </>
   );

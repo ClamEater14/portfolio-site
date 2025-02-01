@@ -48,7 +48,7 @@ const mapCollectionToItem = (collection: ProjectCollection): ProjectItem => {
   };
 };
 
-const getDataFetchParams = (page: number = 1) => {
+const getDataFetchParams = () => {
   return QueryString.stringify({
     populate: {
       image: {
@@ -57,10 +57,6 @@ const getDataFetchParams = (page: number = 1) => {
       categories: {
         fields: ["name", "color"],
       },
-    },
-    pagination: {
-      page: page,
-      pageSize: AppConfig.cardsPerPage,
     },
     sort: "id",
   });
@@ -105,28 +101,19 @@ const projectsFetcher = (params: string) =>
       });
     });
 
-const getProjects = async (page: number = 1) => {
-  const apiParams = getDataFetchParams(page);
+const getProjects = async () => {
+  const apiParams = getDataFetchParams();
   const propsToReturn = await projectsFetcher(apiParams);
 
   return propsToReturn;
 };
 
-export default async function Projects({
-  searchParams,
-}: {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+export default async function Projects(props: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const dataPage = await getProjects(
-    searchParams.page
-      ? parseInt(
-          typeof searchParams.page == "string"
-            ? searchParams.page
-            : searchParams.page[0]
-        )
-      : undefined
-  );
+  const searchParams = await props.searchParams;
+  const dataPage = await getProjects();
 
   return <ProjectsDisplay dataPage={dataPage} />;
 }

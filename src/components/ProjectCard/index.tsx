@@ -4,6 +4,7 @@ import { AppConfig } from "../../config/AppConfig";
 import { Icons } from "../Icons";
 import { ProjectCardCategoryBadgeProps } from "./ProjectCardCategoryBadge";
 import ProjectCardImage from "./ProjectCardImage";
+import AnimatedIconLink from "../Link/IconLink";
 
 export class ProjectCardProps {
   title: string = "(Project Title)";
@@ -63,22 +64,22 @@ function ProjectCard(props: ProjectCardProps) {
         <Card.Text className="mb-auto">{props.description}</Card.Text>
         <div className="mt-4">
           {props.repoURL != undefined && (
-            <Card.Link
+            <AnimatedIconLink
               href={props.repoURL}
               rel="noopener noreferrer"
               target="_blank"
-            >
-              <Icons.GitHub size={24} />
-            </Card.Link>
+              icon={Icons.GitHub}
+              iconSize={32}
+            />
           )}
           {props.prodURL != undefined && (
-            <Card.Link
+            <AnimatedIconLink
               href={props.prodURL}
               rel="noopener noreferrer"
               target="_blank"
-            >
-              <Icons.Link45Degrees size={32} />
-            </Card.Link>
+              icon={Icons.Link45Degrees}
+              iconSize={24}
+            />
           )}
           {props.prodURL == undefined && props.repoURL == undefined && (
             <Card.Link as="div">

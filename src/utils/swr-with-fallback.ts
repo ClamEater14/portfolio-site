@@ -16,7 +16,7 @@ export default function useSWRWithFallbackData<
     hasMounted.current = true;
   }, []);
 
-  return useSWR(key, fetcher, {
+  return useSWR<Data, Error, SWRKey>(key, fetcher, {
     ...options,
     fallbackData: hasMounted.current ? undefined : options?.fallbackData,
   });

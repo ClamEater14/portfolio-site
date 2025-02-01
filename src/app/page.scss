@@ -1,12 +1,6 @@
-@import "../globals.scss";
+@use "../globals.scss" as globals;
 
-.enlarge-on-hover {
-  &:hover {
-    transform: scale(1.5);
-    color: $link-hover-color;
-  }
-  
-  transition-property: all;
-  transition-duration: $standard-transition-time;
-  transition-timing-function: $standard-transition-timing-function;
-}
+// .big-button {
+//   width: 50vw;
+//   height: 15vh;
+// }

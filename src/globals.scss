@@ -1,32 +1,18 @@
-@import "~bootstrap/scss/bootstrap.scss";
-
-$standard-transition-time: 0.50s;
-$standard-transition-timing-function: ease;
-$link-hover-color: aqua;
-
-a {
-	&:hover {
-    color: $link-hover-color;
-  }
-  
-  transition-property: all;
-  transition-duration: $standard-transition-time;
-  transition-timing-function: $standard-transition-timing-function;
-}
+@forward "~bootstrap/scss/bootstrap.scss";
 
 html {
   scroll-behavior: auto !important;
 }
 
 body {
-	color: white;
+  color: white;
 }
 
 a {
-	text-decoration: none;
-	color: white;
+  text-decoration: none;
+  color: white;
 }
 
 .title {
-	font-weight: 700;
+  font-weight: 700;
 }

@@ -4,6 +4,7 @@ import { Property } from "csstype";
 export class AppConfig {
 	static backgroundColor: Property.Background = "#000000"; //"#212121";
 	static hedronColor: Color = "#00b3ff";
+	static primaryColor: string = "#00FFFF";
 	static cardImageWidth: number = 320;
 	static cardImageHeight: number = 180;
 	static cardImagePadding: number = 10; // in px

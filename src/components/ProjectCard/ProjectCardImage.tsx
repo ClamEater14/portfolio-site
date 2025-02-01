@@ -2,8 +2,8 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 interface ProjectCardImageProps {
-  noImageElement?: React.ReactElement;
-  placeholderElement?: React.ReactElement;
+  noImageElement?: React.ReactElement<any>;
+  placeholderElement?: React.ReactElement<any>;
   src?: string;
   alt: string;
 }

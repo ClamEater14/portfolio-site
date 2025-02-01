@@ -4,74 +4,59 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { motion } from "motion/react";
 import { Col, Container, Row } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import ProjectCard from "../../components/ProjectCard";
 import ProjectCardCategoryBadge from "../../components/ProjectCard/ProjectCardCategoryBadge";
 import { AppConfig } from "../../config/AppConfig";
 import { ProjectDataPage } from "./page";
+import AnimatedLink from "../../components/Link";
 
 export interface ProjectsDisplayProps {
   dataPage?: ProjectDataPage;
 }
 
 export default function ProjectsDisplay({ dataPage }: ProjectsDisplayProps) {
-  const router = useRouter();
-  const [currPage, setCurrPage] = useState((dataPage?.currentPage ?? 1) - 1);
-  const pageCount = Math.ceil((dataPage?.total ?? 0) / AppConfig.cardsPerPage);
-
-  const pagination = (
-    <ReactPaginate
-      breakClassName={"break-me"}
-      pageClassName={"page-item"}
-      pageLinkClassName={"page-link"}
-      previousClassName={"page-item"}
-      previousLinkClassName={"page-link"}
-      nextClassName={"page-item"}
-      nextLinkClassName={"page-link"}
-      disabledClassName={"disabled"}
-      activeClassName={"active"}
-      containerClassName={"pagination m-0 justify-content-center"}
-      breakLabel="..."
-      nextLabel=">"
-      onPageChange={(nextPageOptions) => {
-        setCurrPage(nextPageOptions.selected);
-        router.push(`/projects?page=${nextPageOptions.selected + 1}`);
-      }}
-      pageRangeDisplayed={5}
-      pageCount={pageCount}
-      forcePage={currPage}
-      previousLabel="<"
-      renderOnZeroPageCount={() => null}
-    />
-  );
-
   const dataList = dataPage ? (
     dataPage.projects.length > 0 ? (
-      dataPage?.projects.map((p) => (
+      dataPage?.projects.map((p, i) => (
         <Col
           key={p.id}
           md="auto"
           className="d-flex align-items-stretch justify-content-center"
         >
-          <ProjectCard
-            title={p.title}
-            description={p.description || undefined}
-            repoURL={p.repoURL || undefined}
-            prodURL={p.prodURL || undefined}
-            imageURL={p.imageURL || undefined}
-            imageAlt={p.imageAlt || undefined}
-            key={p.id}
+          <motion.div
+            className="d-flex align-items-stretch justify-content-center"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 1,
+              delay: i * 0.2,
+              type: "spring",
+              stiffness: 75,
+            }}
           >
-            {p.categories.map((c, i) => (
-              <ProjectCardCategoryBadge
-                key={i}
-                categoryId={c.id}
-                categoryColor={c.color || "#FFFFFF"}
-                categoryName={c.name || undefined}
-              />
-            ))}
-          </ProjectCard>
+            <ProjectCard
+              title={p.title}
+              description={p.description || undefined}
+              repoURL={p.repoURL || undefined}
+              prodURL={p.prodURL || undefined}
+              imageURL={p.imageURL || undefined}
+              imageAlt={p.imageAlt || undefined}
+              key={p.id}
+            >
+              {p.categories.map((c, i) => (
+                <ProjectCardCategoryBadge
+                  key={i}
+                  categoryId={c.id}
+                  categoryColor={c.color || "#FFFFFF"}
+                  categoryName={c.name || undefined}
+                />
+              ))}
+            </ProjectCard>
+          </motion.div>
         </Col>
       ))
     ) : (
@@ -91,27 +76,24 @@ export default function ProjectsDisplay({ dataPage }: ProjectsDisplayProps) {
           <Row>
             <h3 className="text-center m-0">
               See my GitHub profile{" "}
-              <Link
+              <AnimatedLink
                 className="align-self-center"
                 href="https://github.com/clameater14"
                 rel="noopener noreferrer"
                 target="_blank"
-                color="#FFFFFF"
               >
                 <u>here</u>
-              </Link>
+              </AnimatedLink>
               !
             </h3>
           </Row>
         </Container>
         <br />
-        <Container className="mb-2">{pagination}</Container>
         <Container className="mb-2 h-auto">
           <Row md={4} xs={1} className="g-1 justify-content-center">
             {dataList}
           </Row>
         </Container>
-        <Container className="mt-2 mb-4">{pagination}</Container>
       </section>
     </>
   );

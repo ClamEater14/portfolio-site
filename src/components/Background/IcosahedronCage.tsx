@@ -5,14 +5,9 @@ import { AppConfig } from "../../config/AppConfig";
 
 function IcosahedronCage() {
   const shapeRef = useRef<Mesh>(null);
-  const camera = useRef<PerspectiveCamera>(null);
 
   useFrame((_state, delta) => {
     if (!shapeRef.current) {
-      return;
-    }
-
-    if (!camera.current) {
       return;
     }
 
@@ -21,7 +16,6 @@ function IcosahedronCage() {
 
   return (
     <group position={[0, 0, 5]}>
-      <perspectiveCamera ref={camera} />
       <mesh ref={shapeRef}>
         <icosahedronGeometry args={[3, 2]} />
         <meshBasicMaterial
