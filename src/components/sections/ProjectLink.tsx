@@ -16,7 +16,7 @@ const ProjectLinkSection = () => {
           </Col>
         </Row>
         <Row>
-          <Col className="m-5">
+          <Col className="p-5">
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -35,7 +35,7 @@ const ProjectLinkSection = () => {
                     className="btn btn-lg"
                   >
                     <span className="display-2 m-3 d-flex align-items-center">
-                      <Icons.Folder size={128} />
+                      <Icons.Folder size={96} />
                       <span className="ms-4 display-1 subtitle">View Projects</span>
                     </span>
                   </motion.button>

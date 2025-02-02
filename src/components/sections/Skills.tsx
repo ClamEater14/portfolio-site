@@ -43,7 +43,7 @@ const SkillsSection = () => {
                 { image: "/skills/mysql.svg", name: "MySQL" },
                 {
                   image: "/skills/postgres.svg",
-                  name: "Postgres (PostgreSQL)",
+                  name: "PostgreSQL",
                 },
               ]}
             />

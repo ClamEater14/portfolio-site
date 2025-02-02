@@ -32,7 +32,7 @@ const SkillsRow: React.FC<SkillsRowProps> = ({ header, skills }) => {
       ) : null}
       <Row className="justify-content-center">
         <Col>
-          <Stack direction="horizontal" gap={4} className="flex-wrap justify-content-center m-1">
+          <Stack direction="horizontal" gap={3} className="flex-wrap justify-content-center m-1">
             {skills.map((skill, index) => (
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -44,8 +44,8 @@ const SkillsRow: React.FC<SkillsRowProps> = ({ header, skills }) => {
               >
                 <div
                   style={{
-                    width: `${100}px`,
-                    height: `${100}px`,
+                    width: `${64}px`,
+                    height: `${64}px`,
                     position: "relative",
                   }}
                 >
