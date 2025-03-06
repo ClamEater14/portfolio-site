@@ -10,6 +10,6 @@ export class AppConfig {
   static cardImagePadding: number = 10; // in px
   static logoURL: string = "https://files.caleblamcodes.dev/logo.svg";
   static ogImageURL: string = "https://files.caleblamcodes.dev/logo.png";
-  static apiURL: string = "https://strapi.caleblamcodes.dev/api";
+  static apiURL: string = process.env.STRAPI_API_URL || "https://strapi.caleblamcodes.dev/api";
   static cardsPerPage: number = 16;
 }
