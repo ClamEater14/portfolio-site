@@ -6,7 +6,7 @@ import * as Icons from "../Icons";
 
 import "./index.scss";
 
-const ProjectLinkSection = () => {
+const ProjectsLinkSection = () => {
   return (
     <section id="projects">
       <Container className="justify-content-center" fluid>
@@ -49,4 +49,4 @@ const ProjectLinkSection = () => {
   );
 };
 
-export default ProjectLinkSection;
+export default ProjectsLinkSection;

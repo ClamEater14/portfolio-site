@@ -5,7 +5,7 @@ import React from "react";
 import "./page.scss";
 
 import AboutSection from "../components/sections/About";
-import ProjectLinkSection from "../components/sections/ProjectLink";
+import ProjectsLinkSection from "../components/sections/ProjectsLink";
 import SkillsSection from "../components/sections/Skills";
 
 const Home: React.FC = () => {
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
     <>
       <AboutSection />
       <SkillsSection />
-      <ProjectLinkSection />
+      <ProjectsLinkSection />
     </>
   );
 };

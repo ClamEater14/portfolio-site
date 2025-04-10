@@ -54,7 +54,7 @@ const generateCSP = ({ nonce }: GenerateCSPProps) => {
 
   // script-src-elem
   add("script-src-elem", `'self'`);
-  // add("script-src-elem", `'nonce-${nonce}'`); // Disabled for now until I find a way to nonces to inline scripts
+  // add("script-src-elem", `'nonce-${nonce}'`); // Disabled for now until I find a way to add nonces to inline scripts
   add("script-src-elem", `'unsafe-inline'`);
 
   // script-src
