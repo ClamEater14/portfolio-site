@@ -1,10 +1,11 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Stack } from "react-bootstrap";
 
 import { AppConfig } from "../../config/AppConfig";
+import { CategoryItem } from "../../types/ProjectPageTypes";
 import * as Icons from "../Icons";
 import AnimatedIconLink from "../Link/IconLink";
-import { ProjectCardCategoryBadgeProps } from "./ProjectCardCategoryBadge";
+import ProjectCardCategoryBadge from "./ProjectCardCategoryBadge";
 import ProjectCardImage from "./ProjectCardImage";
 
 export class ProjectCardProps {
@@ -14,53 +15,68 @@ export class ProjectCardProps {
   imageAlt?: string = undefined;
   prodURL?: string = undefined;
   repoURL?: string = undefined;
-  children?: React.ReactElement<ProjectCardCategoryBadgeProps> | React.ReactElement<ProjectCardCategoryBadgeProps>[];
+  categories?: CategoryItem[];
 }
 
 function ProjectCard(props: ProjectCardProps) {
   return (
     <Card className="position-relative" style={{ width: `${AppConfig.cardImageWidth}px` }}>
-      <Card.Img
-        variant="top"
-        as={ProjectCardImage}
-        alt={props.imageAlt}
-        src={props.imageURL}
-        width={AppConfig.cardImageWidth}
-        height={AppConfig.cardImageHeight}
-        style={{
-          objectFit: "contain",
-          padding: `${AppConfig.cardImagePadding}px`,
-        }}
-        noImageElement={
-          <div
-            style={{
-              textAlign: "center",
-              padding: "10px",
-            }}
-          >
-            <Icons.QuestionMark size={AppConfig.cardImageHeight - 2 * 10} />
-          </div>
-        }
-        placeholderElement={
-          <div
-            style={{
-              textAlign: "center",
-              padding: "10px",
-            }}
-          >
-            <Icons.HourglassSplit size={AppConfig.cardImageHeight - 2 * 10} />
-          </div>
-        }
-      />
+      <Card.Header>
+        <Card.Img
+          variant="top"
+          as={ProjectCardImage}
+          alt={props.imageAlt}
+          src={props.imageURL}
+          width={AppConfig.cardImageWidth}
+          height={AppConfig.cardImageHeight}
+          style={{
+            objectFit: "contain",
+            padding: `${AppConfig.cardImagePadding}px`,
+          }}
+          noImageElement={
+            <div
+              style={{
+                textAlign: "center",
+                padding: "10px",
+              }}
+            >
+              <Icons.QuestionMark size={AppConfig.cardImageHeight - 2 * 10} />
+            </div>
+          }
+          placeholderElement={
+            <div
+              style={{
+                textAlign: "center",
+                padding: "10px",
+              }}
+            >
+              <Icons.HourglassSplit size={AppConfig.cardImageHeight - 2 * 10} />
+            </div>
+          }
+        />
+
+        <Card.Title className="text-center">{props.title}</Card.Title>
+      </Card.Header>
       <Card.Body className="d-flex flex-column">
-        <Card.Title>{props.title}</Card.Title>
         <Card.Subtitle>
-          <div className="mb-1">{props.children}</div>
+          <div className="mb-1">
+            {props.categories?.map((category, i) => (
+              <ProjectCardCategoryBadge
+                categoryId={category.id}
+                key={i}
+                categoryColor={category.color || "#FFFFFF"}
+                categoryName={category.name || "<Unknown>"}
+              />
+            ))}
+          </div>
         </Card.Subtitle>
         <Card.Text className="mb-auto">{props.description}</Card.Text>
-        <div className="mt-4">
+      </Card.Body>
+      <Card.Footer>
+        <Stack direction="horizontal" gap={2}>
           {props.repoURL != undefined && (
-            <AnimatedIconLink
+            <Card.Link
+              as={AnimatedIconLink}
               href={props.repoURL}
               rel="noopener noreferrer"
               target="_blank"
@@ -69,12 +85,13 @@ function ProjectCard(props: ProjectCardProps) {
             />
           )}
           {props.prodURL != undefined && (
-            <AnimatedIconLink
+            <Card.Link
+              as={AnimatedIconLink}
               href={props.prodURL}
               rel="noopener noreferrer"
               target="_blank"
               icon={Icons.Link45Degrees}
-              iconSize={24}
+              iconSize={32}
             />
           )}
           {props.prodURL == undefined && props.repoURL == undefined && (
@@ -83,8 +100,8 @@ function ProjectCard(props: ProjectCardProps) {
               <span className="m-2 align-middle">No link available.</span>
             </Card.Link>
           )}
-        </div>
-      </Card.Body>
+        </Stack>
+      </Card.Footer>
     </Card>
   );
 }

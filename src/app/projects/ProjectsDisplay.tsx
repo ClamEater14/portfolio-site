@@ -6,7 +6,6 @@ import { Col, Container, Row } from "react-bootstrap";
 
 import AnimatedLink from "../../components/Link";
 import ProjectCard from "../../components/ProjectCard";
-import ProjectCardCategoryBadge from "../../components/ProjectCard/ProjectCardCategoryBadge";
 import { ProjectDataPage } from "./page";
 
 export interface ProjectsDisplayProps {
@@ -37,17 +36,9 @@ export default function ProjectsDisplay({ dataPage }: ProjectsDisplayProps) {
               prodURL={p.prodURL || undefined}
               imageURL={p.imageURL || undefined}
               imageAlt={p.imageAlt || undefined}
+              categories={p.categories}
               key={p.id}
-            >
-              {p.categories.map((c, i) => (
-                <ProjectCardCategoryBadge
-                  key={i}
-                  categoryId={c.id}
-                  categoryColor={c.color || "#FFFFFF"}
-                  categoryName={c.name || undefined}
-                />
-              ))}
-            </ProjectCard>
+            />
           </motion.div>
         </Col>
       ))
