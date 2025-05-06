@@ -12,8 +12,6 @@ export type ProjectDataPage = {
   projects: ProjectItem[];
 };
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Caleb Lam | Projects",
   description: "A software developer focused on backend development. See my projects here!",
@@ -68,7 +66,9 @@ const dataToProps = (d: ProjectsData): ProjectDataPage => {
 };
 
 const projectsFetcher = (params: string) =>
-  fetch(`${AppConfig.apiURL}/projects?${params}`)
+  fetch(`${AppConfig.apiURL}/projects?${params}`, {
+    next: { revalidate: 60 },
+  })
     .then(async (res) => {
       const contentType = res.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
