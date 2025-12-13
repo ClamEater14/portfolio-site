@@ -23,10 +23,7 @@ export default function ProjectsDisplay({ dataPage }: ProjectsDisplayProps) {
             animate={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{
-              duration: 1,
-              delay: i * 0.2,
-              type: "spring",
-              stiffness: 75,
+              duration: 0.5,
             }}
           >
             <ProjectCard

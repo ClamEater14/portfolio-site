@@ -16,42 +16,41 @@
     "@react-three/fiber": "^9.0.0-rc.5",
     "@types/node": "18.11.18",
     "@types/qs": "^6.9.18",
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.2",
-    "bootstrap": "^5.3.3",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "bootstrap": "^5.3.8",
     "motion": "^12.0.6",
-    "next": "15.3.0",
+    "next": "16.0.10",
     "nextjs-toploader": "^1.6.12",
     "qs": "^6.14.0",
-    "react": "19.1.0",
+    "react": "19.2.3",
     "react-bootstrap": "^2.10.9",
-    "react-dom": "19.1.0",
+    "react-dom": "19.2.3",
     "react-paginate": "^8.3.0",
     "sass": "^1.83.4",
     "sharp": "^0.33.5",
     "swr": "^2.3.0",
     "three": "^0.172.0",
-    "typescript": "5.0.2"
+    "typescript": "5.9.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
     "@types/three": "^0.148.1",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
     "@typescript-eslint/parser": "^8.19.1",
     "eslint": "^9.18.0",
-    "eslint-config-next": "15.3.0",
+    "eslint-config-next": "16.0.10",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.4.2",
     "prettier-plugin-sort-json": "^4.1.1"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=24"
   },
   "overrides": {
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.2"
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
   }
 }

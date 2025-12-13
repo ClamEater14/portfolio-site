@@ -1,3 +1,6 @@
+import nextTypescript from "eslint-config-next/typescript";
+import next from "eslint-config-next";
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 /* eslint-disable import/no-anonymous-default-export */
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -16,7 +19,10 @@ const compat = new FlatCompat({
 });
 
 export default [
-  ...compat.extends("next", "next/core-web-vitals", "prettier"),
+  ...nextTypescript,
+  ...next,
+  ...nextCoreWebVitals,
+  ...compat.extends("prettier"),
   {
     plugins: {
       prettier,
@@ -63,4 +69,7 @@ export default [
       "@typescript-eslint/no-var-requires": "off",
     },
   },
+  {
+    ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"]
+  }
 ];

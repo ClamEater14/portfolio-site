@@ -4,6 +4,7 @@ import { Exo_2 } from "next/font/google";
 import { AppConfig } from "../config/AppConfig";
 import RootBodyLayout from "./RootBodyLayout";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../globals.scss";
 
 import { Viewport } from "next/dist/lib/metadata/types/metadata-interface";
