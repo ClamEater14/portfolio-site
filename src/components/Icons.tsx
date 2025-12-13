@@ -4,9 +4,9 @@ export interface IconProps {
   size?: number;
 }
 
-export type Icon = ({ size = 24 }: IconProps) => JSX.Element;
+export type Icon = ({ size }: IconProps) => JSX.Element;
 
-const makeSVG = ({ size }: IconProps, ...paths: string[]) => (
+const makeSVG = ({ size = 24 }: IconProps, ...paths: string[]) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} fill="currentColor" viewBox="0 0 16 16">
     {paths.map((path, i) => (
       <path key={i} d={path} />
