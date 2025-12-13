@@ -1,7 +1,7 @@
 {
   "build": {
     "builder": "RAILPACK",
-    "buildCommand": "true"
+    "buildCommand": "npm install"
   },
   "deploy": {
     "startCommand": "npm run build && npm run start",
