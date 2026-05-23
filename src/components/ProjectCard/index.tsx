@@ -59,11 +59,11 @@ function ProjectCard(props: ProjectCardProps) {
       </Card.Header>
       <Card.Body className="d-flex flex-column">
         <Card.Subtitle>
-          <div className="mb-1">
-            {props.categories?.map((category, i) => (
+          <div className="mb-1 d-flex flex-wrap gap-1 justify-content-center">
+            {props.categories?.map((category) => (
               <ProjectCardCategoryBadge
                 categoryId={category.id}
-                key={i}
+                key={category.id}
                 categoryColor={category.color || "#FFFFFF"}
                 categoryName={category.name || "<Unknown>"}
               />

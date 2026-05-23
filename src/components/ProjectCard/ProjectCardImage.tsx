@@ -39,6 +39,7 @@ function ProjectCardImage(props: ProjectCardImageProps) {
           src={src}
           {...originalImageProps}
           loading={"eager"}
+          unoptimized
           onLoad={handleLoad}
         />
       </div>
