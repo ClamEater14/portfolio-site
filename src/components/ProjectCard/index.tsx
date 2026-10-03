@@ -70,7 +70,9 @@ function ProjectCard(props: ProjectCardProps) {
             ))}
           </div>
         </Card.Subtitle>
-        <Card.Text className="mb-auto">{props.description}</Card.Text>
+        <Card.Text className="mb-auto" style={{ whiteSpace: "pre-line" }}>
+          {props.description}
+        </Card.Text>
       </Card.Body>
       <Card.Footer>
         <Stack direction="horizontal" gap={2}>
