@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { motion } from "motion/react";
+import Link from "next/link";
 import { Col, Container, Row } from "react-bootstrap";
 
 import * as Icons from "../Icons";

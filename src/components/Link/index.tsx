@@ -1,9 +1,9 @@
 "use client";
 
-import { UrlObject } from "url";
-import { HTMLAttributeAnchorTarget } from "react";
-import Link from "next/link";
 import { motion } from "motion/react";
+import Link from "next/link";
+import { HTMLAttributeAnchorTarget } from "react";
+import { UrlObject } from "url";
 
 import { AppConfig } from "../../config/AppConfig";
 

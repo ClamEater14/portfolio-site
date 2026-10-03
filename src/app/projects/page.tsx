@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { connection } from "next/server";
 import QueryString from "qs";
 
 import { AppConfig } from "../../config/AppConfig";
@@ -101,6 +102,7 @@ const getProjects = async () => {
 };
 
 export default async function Projects() {
+  await connection();
   const dataPage = await getProjects();
 
   return <ProjectsDisplay dataPage={dataPage} />;

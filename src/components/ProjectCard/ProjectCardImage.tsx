@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 interface ProjectCardImageProps {
   noImageElement?: React.ReactElement<any>;
@@ -21,11 +21,11 @@ function ProjectCardImage(props: ProjectCardImageProps) {
     ...originalImageProps
   } = props;
 
-  const handleLoad = () => setLoaded(true);
+  const handleLoad = useCallback(() => setLoaded(true), []);
 
   useEffect(() => {
     if (imageRef.current && imageRef.current.complete) handleLoad();
-  }, []);
+  }, [handleLoad]);
 
   if (!src) return <div>{noImageElement}</div>;
   return (

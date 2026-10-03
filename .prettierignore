@@ -2,3 +2,6 @@
 /.next
 /out
 /build
+/target
+/.vercel
+/coverage

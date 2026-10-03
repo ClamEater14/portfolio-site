@@ -1,5 +1,5 @@
-import AnimatedLink, { LinkProps } from ".";
 import * as Icons from "../Icons";
+import AnimatedLink, { LinkProps } from ".";
 
 export interface IconLinkProps extends LinkProps {
   icon: Icons.Icon;

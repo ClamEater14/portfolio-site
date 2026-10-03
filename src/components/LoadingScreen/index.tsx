@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import Image from "next/image";
 import { useAnimate } from "motion/react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 // Removed unused import
 import { AppConfig } from "../../config/AppConfig";
@@ -24,7 +24,7 @@ function LoadingScreen({
 }: LoadingScreenProps) {
   const [visible, setVisible] = useState(true);
   const [startFading, setStartFading] = useState(false);
-  const [exiting, setExiting] = useState(false);
+  const exitingRef = useRef(false);
   const [logo, animateLogo] = useAnimate<HTMLDivElement>();
   const [screen, animateScreen] = useAnimate<HTMLDivElement>();
   const [currLoopTime, setCurrLoopTime] = useState(0);
@@ -72,10 +72,10 @@ function LoadingScreen({
   }, [animateLogo, currLoopTime, loading, logo, logoFillDuration, startFading]);
 
   useEffect(() => {
-    if (loading || !startFading || exiting) {
+    if (loading || !startFading || exitingRef.current) {
       return;
     }
-    setExiting(true);
+    exitingRef.current = true;
 
     const doExit = () => {
       if (onExited) onExited();
@@ -89,18 +89,7 @@ function LoadingScreen({
 
     if (onExiting) onExiting();
     exitAnim();
-  }, [
-    animateLogo,
-    animateScreen,
-    exiting,
-    loading,
-    logo,
-    onExited,
-    onExiting,
-    screen,
-    startFading,
-    transitionDuration,
-  ]);
+  }, [animateLogo, animateScreen, loading, logo, onExited, onExiting, screen, startFading, transitionDuration]);
   if (!visible) return null; // Conditionally render the component
 
   return (
