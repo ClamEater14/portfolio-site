@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import { Metadata } from "next";
 import { connection } from "next/server";
 import QueryString from "qs";
@@ -84,6 +85,7 @@ const projectsFetcher = (params: string) =>
     .then((d) => dataToProps(d))
     .catch<ProjectDataPage>((err) => {
       console.error(err);
+      Sentry.captureException(err, { tags: { operation: "strapi.projects" } });
       return dataToProps({
         data: [],
         meta: {

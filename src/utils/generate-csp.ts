@@ -91,6 +91,10 @@ const generateCSP = ({ nonce }: GenerateCSPProps) => {
   add("connect-src", `ws:`, { devOnly: true });
   add("connect-src", `https://strapi.caleblamcodes.dev`);
 
+  // Allow Sentry Replay's compression worker.
+  add("worker-src", `'self'`);
+  add("worker-src", "blob:");
+
   // font-src
   add("font-src", "'self'");
   // add("font-src", "https://fonts.googleapis.com");

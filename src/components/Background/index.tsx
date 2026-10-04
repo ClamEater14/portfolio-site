@@ -1,5 +1,6 @@
 import { Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import * as Sentry from "@sentry/nextjs";
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -14,7 +15,16 @@ interface BackgroundProps {
 
 function Background({ onLoad }: BackgroundProps) {
   return (
-    <ErrorBoundary FallbackComponent={FallbackGradientBackground} onError={onLoad}>
+    <ErrorBoundary
+      FallbackComponent={FallbackGradientBackground}
+      onError={(error, info) => {
+        Sentry.captureException(error, {
+          tags: { component: "Background" },
+          extra: { componentStack: info.componentStack },
+        });
+        onLoad?.();
+      }}
+    >
       <Canvas
         linear
         className="bg-canvas"
