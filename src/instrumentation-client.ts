@@ -8,8 +8,14 @@ Sentry.init({
   environment: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT || process.env.NODE_ENV,
   dsn: "https://fa9ebb7fc0ee268638430017b806ffe3@o4512111431581696.ingest.us.sentry.io/4512195650125824",
 
-  // Add optional integrations for additional features
-  integrations: [Sentry.replayIntegration()],
+  integrations: [
+    Sentry.replayIntegration({
+      // Portfolio text and media are public; keep visitor-entered values masked.
+      maskAllText: false,
+      blockAllMedia: false,
+      maskAllInputs: true,
+    }),
+  ],
 
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
   tracesSampleRate: 1,
