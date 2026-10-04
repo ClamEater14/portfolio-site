@@ -87,6 +87,19 @@ and tag invalidation must be shared between instances.
 References: [Strapi webhooks](https://docs.strapi.io/cms/backend-customization/webhooks)
 and [Next.js revalidateTag](https://nextjs.org/docs/app/api-reference/functions/revalidateTag).
 
+## Sentry environments
+
+The browser, server, and edge SDKs use `NEXT_PUBLIC_SENTRY_ENVIRONMENT`, falling
+back to `NODE_ENV` when it is unset. `npm run dev` therefore reports to
+`development`, while production builds report to `production` by default.
+
+Set `NEXT_PUBLIC_SENTRY_ENVIRONMENT=production` in Railway before building. The
+browser value is embedded at build time, so changing it requires a rebuild.
+For local testing with `npm run build` and `npm run start`, set
+`NEXT_PUBLIC_SENTRY_ENVIRONMENT=development` in `.env.local` before building to
+keep test events in the development environment. Sentry creates each environment
+when it first receives an event using that name.
+
 ## Linting & Formatting
 
 Biome handles JavaScript, TypeScript, JSON, linting, and import organization.

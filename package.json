@@ -16,6 +16,7 @@
   "dependencies": {
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.1",
+    "@sentry/nextjs": "^11.4.0",
     "@types/node": "26.6.4",
     "@types/qs": "^6.15.1",
     "@types/react": "19.3.0",
