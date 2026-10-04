@@ -10,6 +10,7 @@ import ProjectCardImage from "./ProjectCardImage";
 
 export class ProjectCardProps {
   title: string = "(Project Title)";
+  featured?: boolean = false;
   description?: string = "";
   imageURL?: string = undefined;
   imageAlt?: string = undefined;
@@ -20,7 +21,13 @@ export class ProjectCardProps {
 
 function ProjectCard(props: ProjectCardProps) {
   return (
-    <Card className="position-relative" style={{ width: `${AppConfig.cardImageWidth}px` }}>
+    <Card
+      className="position-relative"
+      style={{
+        width: `${props.featured ? AppConfig.cardFeaturedWidth : AppConfig.cardDefaultWidth}px`,
+        borderColor: props.featured ? AppConfig.primaryColor : undefined,
+      }}
+    >
       <Card.Header>
         <Card.Img
           variant="top"

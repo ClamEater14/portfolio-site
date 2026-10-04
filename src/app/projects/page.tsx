@@ -3,6 +3,7 @@ import { connection } from "next/server";
 import QueryString from "qs";
 
 import { AppConfig } from "../../config/AppConfig";
+import { PROJECTS_CACHE_TAG } from "../../constants/cache-tags";
 import { CategoryItem, ProjectCollection, ProjectItem, ProjectsData } from "../../types/ProjectPageTypes";
 import ProjectsDisplay from "./ProjectsDisplay";
 
@@ -25,6 +26,7 @@ const mapCollectionToItem = (collection: ProjectCollection): ProjectItem => {
   return {
     id: collection.id,
     title: collection.title || "(Untitled)",
+    isFeatured: collection.isFeatured === true,
     description: collection.description || null,
     imageURL: collection.image?.url || null,
     imageAlt: collection.image?.alternativeText || null,
@@ -51,7 +53,7 @@ const getDataFetchParams = () => {
         fields: ["name", "color"],
       },
     },
-    sort: "id",
+    sort: "title",
   });
 };
 
@@ -68,7 +70,7 @@ const dataToProps = (d: ProjectsData): ProjectDataPage => {
 
 const projectsFetcher = (params: string) =>
   fetch(`${AppConfig.apiURL}/projects?${params}`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 3600, tags: [PROJECTS_CACHE_TAG] },
   })
     .then(async (res) => {
       const contentType = res.headers.get("content-type");

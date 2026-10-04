@@ -1,6 +1,7 @@
 export interface ProjectItem {
   id: number;
   title: string;
+  isFeatured: boolean;
   description: string | null;
   prodURL: string | null;
   repoURL: string | null;
@@ -25,6 +26,7 @@ export interface ProjectCollection {
   id: number;
   documentId: string;
   title: string;
+  isFeatured?: boolean;
   description?: string;
   prodURL?: string;
   repoURL?: string;

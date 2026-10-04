@@ -5,6 +5,8 @@ export class AppConfig {
   static backgroundColor: Property.Background = "#000000";
   static hedronColor: Color = "#00b3ff";
   static primaryColor: string = "#00FFFF";
+  static cardDefaultWidth: number = 320;
+  static cardFeaturedWidth: number = 640;
   static cardImageWidth: number = 320;
   static cardImageHeight: number = 180;
   static cardImagePadding: number = 10; // in px
