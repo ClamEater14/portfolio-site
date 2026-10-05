@@ -31,8 +31,7 @@ const mapCollectionToItem = (collection: ProjectCollection): ProjectItem => {
     description: collection.description || null,
     imageURL: collection.image?.url || null,
     imageAlt: collection.image?.alternativeText || null,
-    repoURL: collection.repoURL || null,
-    prodURL: collection.prodURL || null,
+    links: collection.links || [],
     categories:
       collection.categories?.map<CategoryItem>((catCollection): CategoryItem => {
         return {
@@ -47,6 +46,7 @@ const mapCollectionToItem = (collection: ProjectCollection): ProjectItem => {
 const getDataFetchParams = () => {
   return QueryString.stringify({
     populate: {
+      links: true,
       image: {
         fields: ["url", "alternativeText"],
       },

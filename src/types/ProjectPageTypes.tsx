@@ -1,10 +1,11 @@
+import type { ProjectLinkCollection } from "./ProjectLinkTypes";
+
 export interface ProjectItem {
   id: number;
   title: string;
   isFeatured: boolean;
   description: string | null;
-  prodURL: string | null;
-  repoURL: string | null;
+  links: ProjectLinkCollection[];
   imageURL: string | null;
   imageAlt: string | null;
   categories: CategoryItem[];
@@ -28,8 +29,7 @@ export interface ProjectCollection {
   title: string;
   isFeatured?: boolean;
   description?: string;
-  prodURL?: string;
-  repoURL?: string;
+  links?: ProjectLinkCollection[];
   image?: {
     url: string;
     alternativeText: string;

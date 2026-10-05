@@ -33,7 +33,7 @@ function ProjectCardImage(props: ProjectCardImageProps) {
       {!loaded && <div>{placeholderElement}</div>}
       <div className={loaded ? "visible" : "collapse"}>
         <Image
-          alt={alt?.trim() !== "" ? alt : "Image without alt text."}
+          alt={alt !== undefined && alt.trim() !== "" ? alt : "Image without alt text."}
           ref={imageRef}
           loader={({ src }) => src}
           src={src}

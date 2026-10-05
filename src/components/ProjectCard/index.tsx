@@ -2,9 +2,11 @@ import React from "react";
 import { Card, Stack } from "react-bootstrap";
 
 import { AppConfig } from "../../config/AppConfig";
+import type { ProjectLinkCollection } from "../../types/ProjectLinkTypes";
 import { CategoryItem } from "../../types/ProjectPageTypes";
 import * as Icons from "../Icons";
 import AnimatedIconLink from "../Link/IconLink";
+import { getProjectLinkIcon } from "./linkIcons";
 import ProjectCardCategoryBadge from "./ProjectCardCategoryBadge";
 import ProjectCardImage from "./ProjectCardImage";
 
@@ -14,12 +16,13 @@ export class ProjectCardProps {
   description?: string = "";
   imageURL?: string = undefined;
   imageAlt?: string = undefined;
-  prodURL?: string = undefined;
-  repoURL?: string = undefined;
+  links?: ProjectLinkCollection[];
   categories?: CategoryItem[];
 }
 
 function ProjectCard(props: ProjectCardProps) {
+  const links = props.links || [];
+
   return (
     <Card
       className="position-relative"
@@ -82,31 +85,26 @@ function ProjectCard(props: ProjectCardProps) {
         </Card.Text>
       </Card.Body>
       <Card.Footer>
-        <Stack direction="horizontal" gap={2}>
-          {props.repoURL != undefined && (
-            <Card.Link
-              as={AnimatedIconLink}
-              href={props.repoURL}
-              rel="noopener noreferrer"
-              target="_blank"
-              icon={Icons.GitHub}
-              iconSize={32}
-            />
-          )}
-          {props.prodURL != undefined && (
-            <Card.Link
-              as={AnimatedIconLink}
-              href={props.prodURL}
-              rel="noopener noreferrer"
-              target="_blank"
-              icon={Icons.Link45Degrees}
-              iconSize={32}
-            />
-          )}
-          {props.prodURL == undefined && props.repoURL == undefined && (
+        <Stack direction="vertical" gap={2} className="align-items-start">
+          {links.map((link) => (
+            <div key={link.id} className="mw-100" style={{ minWidth: 0 }}>
+              <Card.Link
+                as={AnimatedIconLink}
+                className="d-inline-flex mw-100"
+                href={link.url}
+                ariaLabel={link.label}
+                label={link.label}
+                rel="noopener noreferrer"
+                target="_blank"
+                icon={getProjectLinkIcon(link.icon)}
+                iconSize={32}
+              />
+            </div>
+          ))}
+          {links.length === 0 && (
             <Card.Link as="div">
               <Icons.XSquareFill size={32} />
-              <span className="m-2 align-middle">No link available.</span>
+              <span className="m-2 align-middle">No links available</span>
             </Card.Link>
           )}
         </Stack>

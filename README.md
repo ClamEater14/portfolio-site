@@ -21,6 +21,99 @@ npm run dev
 5. Open the link `http://localhost:8080` to see the website.
 6. To stop the development server, press `Ctrl + C` in the terminal.
 
+## Project links contract
+
+The agreed replacement for `repoURL` and `prodURL` is an ordered `links` array.
+The TypeScript contract is defined in
+[`src/types/ProjectLinkTypes.ts`](src/types/ProjectLinkTypes.ts). This contract is
+used by the project fetch and cards. The backend retains `repoURL` and `prodURL`
+during rollout, but the frontend reads only `links` after the one-time backfill.
+
+Each link is a Strapi repeatable component with these content fields:
+
+| Field   | Contract                                                                                                                                                       |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `label` | Required text, trimmed before validation, 1–80 characters. Describes the destination, e.g. “Backend source code” or “Live demo”.                               |
+| `url`   | Required text, trimmed before validation. Must parse as an absolute URL with an `http:` or `https:` protocol. Paths, query strings, and fragments are allowed. |
+| `icon`  | Required enumeration, default `link`. Stores one of the stable keys below.                                                                                     |
+
+Validate URLs with a URL parser and a protocol check rather than copying the
+legacy URL regex. Relative URLs and other schemes, including `mailto:`, are
+outside this initial contract. TypeScript types describe the shape; runtime
+validation is implemented by the backend component and its middleware.
+
+The initial icon choices are:
+
+| Key        | Editor name   | Typical use                                        |
+| ---------- | ------------- | -------------------------------------------------- |
+| `github`   | GitHub        | GitHub repositories                                |
+| `link`     | Link          | Any destination; default and rendering fallback    |
+| `globe`    | Website       | Live sites and demos                               |
+| `book`     | Documentation | Documentation, guides, and written project details |
+| `download` | Download      | Releases and downloadable files                    |
+| `video`    | Video         | Recorded demonstrations and walkthroughs           |
+
+Icon choice is independent of URL validation and labels. Labels and destinations
+are freely editable; the icon choices do not restrict which services a link can
+point to. Multiple links may share the same icon. Keys are independent of React
+export names and must stay stable when icons are redesigned or renamed in code.
+Adding a key later requires updating the CMS enumeration and frontend registry.
+
+For example, the content fields of a project's links could be:
+
+```json
+{
+  "links": [
+    {
+      "label": "Backend source code",
+      "url": "https://github.com/example/backend",
+      "icon": "github"
+    },
+    {
+      "label": "Frontend source code",
+      "url": "https://github.com/example/frontend",
+      "icon": "github"
+    },
+    {
+      "label": "Live demo",
+      "url": "https://example.com",
+      "icon": "globe"
+    }
+  ]
+}
+```
+
+Strapi's populated response will also include a component `id` for each entry,
+represented by `ProjectLinkCollection`. Preserve this ID as the rendering key;
+labels and URLs are editable and need not be unique.
+
+Array order is display order. No separate position, link type, or per-link target
+field is needed. The array may be empty, and there is no initial maximum count;
+the card footer stacks links vertically, with long labels wrapping as needed.
+All project links retain the existing new-tab behavior
+with `rel="noopener noreferrer"`.
+
+The frontend resolves keys through
+[`src/components/ProjectCard/linkIcons.ts`](src/components/ProjectCard/linkIcons.ts).
+Missing
+or unrecognized keys render the generic `link` icon while keeping the destination
+and label usable. Each card link shows its label next to the icon and uses it as
+the accessible name. SVGs inside labelled links
+are decorative. Custom icon uploads, raw SVG markup, and remote icon URLs are
+outside this initial contract.
+
+Keep `repoURL` and `prodURL` until migration is verified. Migrate `repoURL` to
+`{ label: "Source code", url: repoURL, icon: "github" }` and `prodURL` to
+`{ label: "Live demo", url: prodURL, icon: "globe" }`, preserving the existing
+repository-first order. Skip absent values and review any repository hosted
+outside GitHub for a suitable icon.
+
+An empty array means intentionally no links. A compatibility adapter must not
+restore legacy URLs just because `links.length` is zero. Complete the data
+migration before activating array-only rendering, or explicitly track which
+projects have migrated. The project fetch explicitly populates `links` in the API
+query. There is no frontend fallback to legacy URL fields.
+
 ## Strapi project cache webhook
 
 The projects fetch is cached with the `projects` tag and a one-hour revalidation

@@ -30,8 +30,7 @@ export default function ProjectsDisplay({ dataPage }: ProjectsDisplayProps) {
             title={p.title}
             featured={p.isFeatured}
             description={p.description || undefined}
-            repoURL={p.repoURL || undefined}
-            prodURL={p.prodURL || undefined}
+            links={p.links}
             imageURL={p.imageURL || undefined}
             imageAlt={p.imageAlt || undefined}
             categories={p.categories}
@@ -40,7 +39,6 @@ export default function ProjectsDisplay({ dataPage }: ProjectsDisplayProps) {
       </Col>
     ));
 
-  console.log("Featured projects:", featuredProjects);
   const dataList = dataPage ? (
     dataPage.projects.length > 0 ? (
       <>
