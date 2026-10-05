@@ -90,6 +90,8 @@ const generateCSP = ({ nonce }: GenerateCSPProps) => {
   add("connect-src", `'self'`);
   add("connect-src", `ws:`, { devOnly: true });
   add("connect-src", `https://strapi.caleblamcodes.dev`);
+  // Development sends directly to Sentry because the tunnel is production-only.
+  add("connect-src", "https://o4512111431581696.ingest.us.sentry.io", { devOnly: true });
 
   // Allow Sentry Replay's compression worker.
   add("worker-src", `'self'`);
