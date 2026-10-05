@@ -38,6 +38,7 @@ const AnimatedLink: React.FC<LinkProps> = ({
 }) => {
   return (
     <motion.span
+      className="d-inline-flex mw-100"
       initial={{ scale: 1 }}
       whileHover={{
         scale: enlargeOnHover ? enlargedScale : 1,
@@ -46,6 +47,7 @@ const AnimatedLink: React.FC<LinkProps> = ({
     >
       <Link className={className} aria-label={ariaLabel} href={href} rel={rel} target={target}>
         <motion.span
+          className="d-inline-flex mw-100"
           initial={{ color: color }}
           whileHover={{
             color: hoveredColor,

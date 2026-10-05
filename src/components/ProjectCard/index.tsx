@@ -87,7 +87,7 @@ function ProjectCard(props: ProjectCardProps) {
       <Card.Footer>
         <Stack direction="vertical" gap={2} className="align-items-start">
           {links.map((link) => (
-            <div key={link.id} className="mw-100" style={{ minWidth: 0 }}>
+            <div key={link.id} className="d-flex mw-100" style={{ minWidth: 0 }}>
               <Card.Link
                 as={AnimatedIconLink}
                 className="d-inline-flex mw-100"
@@ -97,14 +97,16 @@ function ProjectCard(props: ProjectCardProps) {
                 rel="noopener noreferrer"
                 target="_blank"
                 icon={getProjectLinkIcon(link.icon)}
-                iconSize={32}
+                iconSize={24}
               />
             </div>
           ))}
           {links.length === 0 && (
-            <Card.Link as="div">
-              <Icons.XSquareFill size={32} />
-              <span className="m-2 align-middle">No links available</span>
+            <Card.Link as="div" className="d-inline-flex align-items-center gap-2 mw-100">
+              <span aria-hidden="true" className="d-inline-flex flex-shrink-0">
+                <Icons.XSquareFill size={24} />
+              </span>
+              <span style={{ minWidth: 0, overflowWrap: "anywhere" }}>No links available</span>
             </Card.Link>
           )}
         </Stack>
