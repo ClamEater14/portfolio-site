@@ -11,7 +11,7 @@ export default defineRailway(() => {
     replicas: { "us-west2": 1 },
     domains: ["www.caleblamcodes.dev"],
     networking: { privateNetworkEndpoint: "portfolio-site" },
-    env: { SENTRY_AUTH_TOKEN: preserve(), STRAPI_API_URL: preserve(), STRAPI_WEBHOOK_SECRET: preserve() },
+    env: { RAILPACK_NODE_VERSION: "24", SENTRY_AUTH_TOKEN: preserve(), STRAPI_API_URL: preserve(), STRAPI_WEBHOOK_SECRET: preserve() },
   });
 
   return project("portfolio-site", {
